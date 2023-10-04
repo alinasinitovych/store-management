@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Store.Domain.Dtos
 {
-	public class ProductDto
-	{
+    public class ProductDto
+    {
 
-	}
+    }
 }

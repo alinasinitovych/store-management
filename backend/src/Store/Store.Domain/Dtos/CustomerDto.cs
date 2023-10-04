@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Store.Domain.Dtos
 {
-	public class CustomerDto
-	{
-		public int Id { get; set; }
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
-		public string Address { get; set; }
-		public int OrderCount { get; set; }
-		public decimal TotalOrderCost { get; set; }
-		public DateTime DateAdded { get; set; }
-		public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-	}
+    public class CustomerDto
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public int OrderCount { get; set; }
+        public decimal TotalOrderCost { get; set; }
+        public DateTime DateAdded { get; set; }
+        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    }
 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Store.Domain.Enums
 {
-	public enum OrderStatus
-	{
-		New,
-		Paid,
-		Shipped,
-		Delivered,
-		Closed
+    public enum OrderStatus
+    {
+        New,
+        Paid,
+        Shipped,
+        Delivered,
+        Closed
 
-	}
+    }
 }

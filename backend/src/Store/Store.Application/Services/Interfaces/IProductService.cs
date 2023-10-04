@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Store.Application.Services.Interfaces
 {
-	public interface IProductService
-	{
-		Task<ProductDto> CreateProductAsync(ProductDto productDto);
-		Task UpdateProductAsync(ProductDto productDto);
-		Task DeleteProductAsync(int pdoductId);
-		Task<IEnumerable<ProductDto>> GetAllProductsAsync();
-		Task<ProductDto> GetProductByIdAsync(int productId);
-	}
+    public interface IProductService
+    {
+        Task<ProductDto> Create(ProductDto productDto);
+        Task Update(ProductDto productDto);
+        Task Delete(int pdoductId);
+        Task<IEnumerable<ProductDto>> GetAll();
+        Task<ProductDto> GetById(int productId);
+    }
 }

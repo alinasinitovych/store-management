@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Store.Domain.Enums
 {
-	public enum ProductSize
-	{
-
-		Small,
-		Medium,
-		Large,
-		ExtraLarge
-
-	}
+    public enum ProductSize
+    {
+        Small,
+        Medium,
+        Large,
+        ExtraLarge
+    }
 }
