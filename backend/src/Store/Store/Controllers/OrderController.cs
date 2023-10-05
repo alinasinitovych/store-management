@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Store.Application.Services.Interfaces;
 using Store.Domain.Dtos;
 using Store.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace Store.API.Controllers
 {
@@ -21,7 +20,7 @@ namespace Store.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrderById(int id)
+        public async Task<ActionResult<Order>> GetById(int id)
         {
             var orderDto = await _orderService.GetById(id);
             if (orderDto == null)
@@ -32,7 +31,7 @@ namespace Store.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetAllOrders()
+        public async Task<ActionResult<IEnumerable<Order>>> GetAll()
         {
             var orders = await _orderService.GetAll();
             return Ok(orders);
@@ -46,7 +45,7 @@ namespace Store.API.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> UpdateOrder(CreateUpdateOrderDto order)
+        public async Task<IActionResult> Update(CreateUpdateOrderDto order)
         {
             var validationResult = _orderService.ValidateOrder(order);
 
@@ -63,7 +62,7 @@ namespace Store.API.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateOrder(CreateUpdateOrderDto order)
+        public async Task<IActionResult> Create(CreateUpdateOrderDto order)
         {
             var validationResult = _orderService.ValidateOrder(order);
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OrderStatus } from './models/order';
+import { OrderStatus } from './models/orders/order';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

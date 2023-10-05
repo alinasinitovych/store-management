@@ -14,7 +14,7 @@ namespace Store.Infrustracture
         public OrderItemRepository(StoreDbContext appContext) : base(appContext)
         {
         }
-        public async Task<OrderItem> AddOrderItemAsync(int orderId, OrderItem orderItem)
+        public async Task<OrderItem> Add(int orderId, OrderItem orderItem)
         {
             var order = await _context.Orders.FindAsync(orderId);
             orderItem.OrderId = orderId;

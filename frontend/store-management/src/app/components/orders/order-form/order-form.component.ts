@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/app/models/customer';
-import { Order, CreateOrderDto, OrderItem } from 'src/app/models/order';
-import { Product } from 'src/app/models/product';
+import { Customer } from 'src/app/models/customers/customer';
+import { CreateOrderDto } from 'src/app/models/orders/createOrderDto';
+import { OrderItem } from 'src/app/models/orders/orderItem';
+import { Order} from 'src/app/models/orders/order';
+import { Product } from 'src/app/models/products/product';
 import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
 @Component({

@@ -70,7 +70,7 @@ namespace Store.Application.Services
         }
         public async Task<OrderItem> AddOrderItem(int orderId, OrderItem orderItem)
         {
-            await _orderItemRepository.AddOrderItemAsync(orderId, orderItem);
+            await _orderItemRepository.Add(orderId, orderItem);
             return orderItem;
         }
         public async Task Update(CreateUpdateOrderDto orderDto)

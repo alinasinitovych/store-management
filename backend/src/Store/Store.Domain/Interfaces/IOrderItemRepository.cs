@@ -10,6 +10,6 @@ namespace Store.Domain.Interfaces
     public interface IOrderItemRepository
     {
         Task<IEnumerable<OrderItem>> GetOrderItemsByOrderId(int orderId);
-        Task<OrderItem> AddOrderItemAsync(int orderId, OrderItem orderItem);
+        Task<OrderItem> Add(int orderId, OrderItem orderItem);
     }
 }

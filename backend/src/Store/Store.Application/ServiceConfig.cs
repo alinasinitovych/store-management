@@ -6,6 +6,7 @@ using Store.Application.Services;
 using Store.Domain.Dtos;
 using Store.Domain.Interfaces;
 using Store.Infrustracture;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Store.API
 {
