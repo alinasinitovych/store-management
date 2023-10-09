@@ -7,6 +7,8 @@ using Store.Domain.Dtos;
 using Store.Domain.Interfaces;
 using Store.Infrustracture;
 using Microsoft.Extensions.DependencyInjection;
+using Store.Application.Repositories;
+using Store.Application.Validators;
 
 namespace Store.API
 {
@@ -16,7 +18,13 @@ namespace Store.API
         {
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IValidator<CreateUpdateOrderDto>, CreateOrderValidator>();
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerService, CustomerService>();
+
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             services.AddAutoMapper(typeof(OrderToDto));
 

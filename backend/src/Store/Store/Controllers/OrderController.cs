@@ -47,16 +47,7 @@ namespace Store.API.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Update(CreateUpdateOrderDto order)
         {
-            var validationResult = _orderService.ValidateOrder(order);
 
-            if (!validationResult.IsValid)
-            {
-                var validationErrors = validationResult.Errors
-                    .Select(error => new { Property = error.PropertyName, Message = error.ErrorMessage })
-                    .ToList();
-
-                return BadRequest(validationErrors);
-            }
             await _orderService.Update(order);
             return Ok();
         }
@@ -64,21 +55,12 @@ namespace Store.API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create(CreateUpdateOrderDto order)
         {
-            var validationResult = _orderService.ValidateOrder(order);
 
-            if (!validationResult.IsValid)
-            {
-                var validationErrors = validationResult.Errors
-                    .Select(error => new { Property = error.PropertyName, Message = error.ErrorMessage })
-                    .ToList();
-
-                return BadRequest(validationErrors);
-            }
             await _orderService.Create(order);
             return Ok();
         }
 
-        [HttpGet("{orderId}/orderitems")]
+        /*[HttpGet("{orderId}/orderitems")]
         public async Task<ActionResult<IEnumerable<OrderItemDto>>> GetOrderItems(int orderId)
         {
             var orderItems = await _orderService.GetOrderItemsByOrderId(orderId);
@@ -91,7 +73,7 @@ namespace Store.API.Controllers
             var orderItem = _mapper.Map<OrderItem>(orderItemDto);
             await _orderService.AddOrderItem(orderId, orderItem);
             return Ok();
-        }
+        }*/
 
     }
 }

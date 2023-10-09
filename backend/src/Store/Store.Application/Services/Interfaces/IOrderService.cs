@@ -19,7 +19,6 @@ namespace Store.Application.Services.Interfaces
         Task<OrderDto> GetById(int orderId);
         Task<IEnumerable<OrderItemDto>> GetOrderItemsByOrderId(int orderId);
         Task<OrderItem> AddOrderItem(int orderId, OrderItem orderItem);
-        ValidationResult ValidateOrder(CreateUpdateOrderDto orderDto);
 
     }
 }

@@ -1,4 +1,6 @@
-﻿using Store.Application.Services.Interfaces;
+﻿using AutoMapper;
+using FluentValidation;
+using Store.Application.Services.Interfaces;
 using Store.Domain.Dtos;
 using Store.Domain.Entities;
 using Store.Domain.Interfaces;
@@ -10,37 +12,49 @@ using System.Threading.Tasks;
 
 namespace Store.Application.Services
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
-        public ProductService(IProductRepository productRepository)
+        private readonly IMapper _mapper;
+        public ProductService(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
-        public Task<ProductDto> CreateProductAsync(ProductDto productDto)
+        public async Task<ProductDto> Create(ProductDto productDto)
         {
-            throw new NotImplementedException();
+            var product = _mapper.Map<Product>(productDto);
+            var createdProduct = await _productRepository.AddAsync(product);
+            return _mapper.Map<ProductDto>(createdProduct);
         }
 
-        public Task DeleteProductAsync(int pdoductId)
+        public async Task Delete(int pdoductId)
         {
-            throw new NotImplementedException();
+            var prodoctToDelete = await _productRepository.GetByIdAsync(pdoductId);
+            if (prodoctToDelete != null)
+            {
+                await _productRepository.DeleteAsync(prodoctToDelete);
+            }
         }
 
-        public Task<IEnumerable<ProductDto>> GetAllProductsAsync()
+        public async Task<IEnumerable<ProductDto>> GetAll()
         {
-            throw new NotImplementedException();
+            var allProducts = await _productRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<ProductDto>>(allProducts);
         }
 
-        public Task<ProductDto> GetProductByIdAsync(int productId)
+        public async Task<ProductDto> GetById(int productId)
         {
-            throw new NotImplementedException();
+            var prodoct = await _productRepository.GetByIdAsync(productId);
+            return _mapper.Map<ProductDto>(prodoct);
         }
 
-        public Task UpdateProductAsync(ProductDto productDto)
+        public async Task Update(ProductDto productDto)
         {
-            throw new NotImplementedException();
+            var product = _mapper.Map<Product>(productDto);
+            await _productRepository.UpdateAsync(product);
+
         }
     }
 }

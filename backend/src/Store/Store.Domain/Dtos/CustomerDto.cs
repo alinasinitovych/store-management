@@ -16,6 +16,5 @@ namespace Store.Domain.Dtos
         public int OrderCount { get; set; }
         public decimal TotalOrderCost { get; set; }
         public DateTime DateAdded { get; set; }
-        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

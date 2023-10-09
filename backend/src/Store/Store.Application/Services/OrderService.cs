@@ -85,9 +85,6 @@ namespace Store.Application.Services
             return order.OrderItems.Sum(item => item.Quantity);
         }
 
-        public ValidationResult ValidateOrder(CreateUpdateOrderDto orderDto)
-        {
-            return _validator.Validate(orderDto);
-        }
+
     }
 }

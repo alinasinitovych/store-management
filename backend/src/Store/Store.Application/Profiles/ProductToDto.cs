@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Store.Application.Profiles
 {
-    public class OrderItemToDto : Profile
+    public class ProductToDto : Profile
     {
-        public OrderItemToDto()
+        public ProductToDto()
         {
-            CreateMap<OrderItem, OrderItemDto>().ReverseMap();
+            CreateMap<Product, ProductDto>().ReverseMap();
         }
     }
 }
