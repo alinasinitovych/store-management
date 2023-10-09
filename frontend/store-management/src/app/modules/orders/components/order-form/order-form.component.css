@@ -1,13 +1,13 @@
 
-  select {
+  /* select {
     margin: 5px;
     padding: 10px;
     border: 2px solid rgb(56, 56, 56);
     border-radius: 5px;
     width: 200px;
-  }
+  } */
 
-  .select-container {
+  /* .select-container {
     display: flex;
     align-items: center; 
     margin-bottom: 10px; 
@@ -20,7 +20,7 @@
   
   .select-dropdown {
     padding: 10px;
-  }
+  } */
   .comment-textarea {
     width: 100%; 
     box-sizing: border-box;

@@ -9,7 +9,9 @@
     padding: 20px; 
     
   }
- 
+ body{
+  background-color: yellow;
+ }
 .box-button {
   border: 3px solid  #474747;
   background-color:  #d1d1d1;
