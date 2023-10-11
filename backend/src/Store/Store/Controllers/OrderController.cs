@@ -60,20 +60,7 @@ namespace Store.API.Controllers
             return Ok();
         }
 
-        /*[HttpGet("{orderId}/orderitems")]
-        public async Task<ActionResult<IEnumerable<OrderItemDto>>> GetOrderItems(int orderId)
-        {
-            var orderItems = await _orderService.GetOrderItemsByOrderId(orderId);
-            return Ok(orderItems);
-        }
-
-        [HttpPost("{orderId}/orderitems")]
-        public async Task<IActionResult> AddOrderItem(int orderId, OrderItemDto orderItemDto)
-        {
-            var orderItem = _mapper.Map<OrderItem>(orderItemDto);
-            await _orderService.AddOrderItem(orderId, orderItem);
-            return Ok();
-        }*/
+        
 
     }
 }

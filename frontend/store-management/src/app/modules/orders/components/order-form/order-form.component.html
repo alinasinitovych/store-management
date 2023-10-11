@@ -1,83 +1,80 @@
+<form [formGroup]="orderForm" (ngSubmit)="submitForm()">
+  <!-- customer -->
+  <div>
+    <mat-form-field>
+      <mat-label>Customer:</mat-label>
+      <mat-select formControlName="customerId" required>
+        <mat-option *ngFor="let customer of customers" [value]="customer.id">{{customer.firstName + ' ' +
+          customer.lastName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <!-- status -->
+  <div>
+    <mat-form-field>
+      <mat-label>Status:</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option value="0">New</mat-option>
+        <mat-option value="1">Paid</mat-option>
+        <mat-option value="2">Shipped</mat-option>
+        <mat-option value="3">Delivered</mat-option>
+        <mat-option value="4">Closed</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <!-- toral cost -->
+  <div class="select-label">
+    Total: {{ totalCost | currency }}
+  </div>
+  <!-- add products-->
+  <div class="box-header">
+    <h3>Add Products:</h3>
+    <button mat-raised-button class="box-button" routerLink="/add-product">Add product</button>
+  </div>
 
-  <mat-card class="order-form">
-    <mat-card-title>Create New Order</mat-card-title>
-    <form (ngSubmit)="submitForm()"  #orderForm="ngForm">
-      <div class="select-container">
-        <mat-form-field>
-          <mat-label>Customer:</mat-label>
-          <mat-select  required name="customerId" ngModel>
-            <mat-option *ngFor="let customer of customers" [value]="customer.id">{{ customer.name }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-            
-      <div class="select-container">
-        <mat-form-field>
-          <mat-label>Status:</mat-label>
-          <mat-select  name="status"  required ngModel>
-            <mat-option value="0">New</mat-option>
-            <mat-option value="1">Paid</mat-option>
-            <mat-option value="2">Shipped</mat-option>
-            <mat-option value="3">Delivered</mat-option>
-            <mat-option value="4">Closed</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-  
-      <div class="select-label">
-        Total: {{ totalCost | currency }}
-      </div>
-  
-      <div class="box-header">
-        <h3>Add Products:</h3>
-        <button mat-raised-button class="box-button">Add product</button>
-      </div>
-  
-      <mat-table [dataSource]="products" class="order-table">
-        <ng-container matColumnDef="productId">
-          <mat-header-cell *matHeaderCellDef> Product Id </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{ product.id }} </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="productName">
-          <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{ product.name }} </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="productCategory">
-          <mat-header-cell *matHeaderCellDef> Product Category </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{ product.categoryId }} </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="productSize">
-          <mat-header-cell *matHeaderCellDef> Product Size </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{ product.size }} </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="productQuantity">
-          <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{ product.availableQuantity }} </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="productPrice">
-          <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{ product.price }} </mat-cell>
-        </ng-container>
-  
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-      
-      <mat-form-field>
-        <mat-label>Comment</mat-label>
-        <textarea matInput  name="comment" placeholder="Enter comment..." ngModel></textarea>
-      </mat-form-field>
-  
-      <button mat-raised-button class="box-button" type="submit">Create Order</button>
-      <button mat-raised-button class="box-button" type="reset" routerLink="/orders">Cancel</button>
-    </form>
-    
-  </mat-card>
-  
-  
-  
+  <mat-table [dataSource]="products" class="order-table">
+    <ng-container matColumnDef="productId">
+      <mat-header-cell *matHeaderCellDef> Product Id </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="productName">
+      <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="productCategory">
+      <mat-header-cell *matHeaderCellDef> Product Category </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.categoryId }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="productSize">
+      <mat-header-cell *matHeaderCellDef> Product Size </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.size }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="productQuantity">
+      <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.availableQuantity }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="productPrice">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.price }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+  <!-- comment -->
+  <mat-form-field>
+    <mat-label>Comment</mat-label>
+    <textarea matInput formControlName="comment" placeholder="Enter comment..."></textarea>
+  </mat-form-field>
+
+  <!-- create order button -->
+  <button mat-raised-button class="box-button" [disabled]="!orderForm.valid" type="submit">Create Order</button>
+  <button mat-raised-button class="box-button" type="reset" routerLink="/orders">Cancel</button>
+</form>

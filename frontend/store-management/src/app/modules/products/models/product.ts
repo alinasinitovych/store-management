@@ -1,10 +1,10 @@
-export interface Product{
+export interface Product {
     id: number,
-    name:string,
+    name: string,
     availableQuantity: number,
     size: number,
-    price:number,
+    price: number,
     description: string,
     categoryId: number,
-    createdDate:Date
+    createdDate: Date
 }

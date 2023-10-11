@@ -15,12 +15,6 @@ namespace Store.Infrustracture
         public OrderRepository(StoreDbContext appContext) : base(appContext)
         {
         }
-
-        public async Task<IEnumerable<OrderItem>> GetOrderItemsByOrderId(int orderId)
-        {
-            var orderItems = await _context.OrderItems.Where(order => order.OrderId == orderId).ToListAsync();
-            return orderItems;
-        }
         public async Task<IEnumerable<Order>> GetAllIncluding()
         {
             var ordersWithCustomers = await _context.Orders.Include(o => o.Customer).ToListAsync();
