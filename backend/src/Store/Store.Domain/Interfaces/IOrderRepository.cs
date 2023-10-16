@@ -11,8 +11,6 @@ namespace Store.Domain.Interfaces
 {
 	public interface IOrderRepository : IBaseRepository<Order>
 	{
-		Task<IEnumerable<OrderItem>> GetOrderItemsByOrderId(int orderId);
-		Task<OrderItem> AddOrderItemAsync(int orderId, OrderItem orderItem);
 		Task<IEnumerable<Order>> GetAllIncluding();
 		Task<Order> GetOrderByIdIncluding(int id);
 

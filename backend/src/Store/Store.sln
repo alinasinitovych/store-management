@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.API", "Store\Store.API.csproj", "{4345D97C-1CA1-442A-8BE5-0750F8B3F7A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.API", "Store\Store.API.csproj", "{4345D97C-1CA1-442A-8BE5-0750F8B3F7A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Domain", "Store.Domain\Store.Domain.csproj", "{6828CF3D-B6A0-4E00-BF6C-3843DCC2BDF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Domain", "Store.Domain\Store.Domain.csproj", "{6828CF3D-B6A0-4E00-BF6C-3843DCC2BDF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Infrustracture", "Store.Infrustracture\Store.Infrustracture.csproj", "{32F72071-B1E2-40EB-8A42-E6E0234700F9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Application", "Store.Application\Store.Application.csproj", "{376934FC-B0F6-4504-A070-17B2271FFF09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Application", "Store.Application\Store.Application.csproj", "{376934FC-B0F6-4504-A070-17B2271FFF09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{6828CF3D-B6A0-4E00-BF6C-3843DCC2BDF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6828CF3D-B6A0-4E00-BF6C-3843DCC2BDF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6828CF3D-B6A0-4E00-BF6C-3843DCC2BDF6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32F72071-B1E2-40EB-8A42-E6E0234700F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32F72071-B1E2-40EB-8A42-E6E0234700F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32F72071-B1E2-40EB-8A42-E6E0234700F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32F72071-B1E2-40EB-8A42-E6E0234700F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{376934FC-B0F6-4504-A070-17B2271FFF09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{376934FC-B0F6-4504-A070-17B2271FFF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{376934FC-B0F6-4504-A070-17B2271FFF09}.Release|Any CPU.ActiveCfg = Release|Any CPU

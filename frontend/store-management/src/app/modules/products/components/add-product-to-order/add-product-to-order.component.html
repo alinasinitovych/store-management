@@ -1,0 +1,13 @@
+<form>
+
+  <mat-card-header class="box-header">
+    <mat-card-title class="box-title">Orders</mat-card-title>
+  </mat-card-header>
+  <mat-form-field>
+    <mat-select required name="productId" ngModel>
+      <mat-label>Product:</mat-label>
+      <mat-option *ngFor="let product of products | async" value="product.Id">{{ product.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</form>
