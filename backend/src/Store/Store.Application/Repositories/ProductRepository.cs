@@ -1,4 +1,5 @@
-﻿using Store.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Store.Domain.Entities;
 using Store.Domain.Interfaces;
 using Store.Infrustracture;
 using System;
@@ -13,6 +14,11 @@ namespace Store.Application.Repositories
     {
         public ProductRepository(StoreDbContext appContext) : base(appContext)
         {
+        }
+
+        public async Task<IEnumerable<Category>> GetAllCategories()
+        {
+            return await _context.Categories.ToListAsync();
         }
     }
 }

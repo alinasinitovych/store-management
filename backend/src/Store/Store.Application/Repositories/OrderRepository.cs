@@ -22,7 +22,10 @@ namespace Store.Infrustracture
         }
         public async Task<Order> GetOrderByIdIncluding(int id)
         {
-            var orderWithCustomer = await _context.Orders.Include(o => o.Customer).Where(o => o.Id == id).FirstOrDefaultAsync();
+            var orderWithCustomer = await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.OrderItems)
+                .Where(o => o.Id == id).FirstOrDefaultAsync();
             return orderWithCustomer;
         }
 

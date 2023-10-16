@@ -8,15 +8,15 @@ import { environment } from 'src/environments/environment.development';
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.css', '../../../../app.component.css']
+  styleUrls: ['./order-list.component.css']
 
 })
 export class OrderListComponent implements OnInit {
-  orders$: Observable<any> ;
+  orders$: Observable<any> = this.orderService.getAll();
   orderStatus = OrderStatus;
-  displayedColumns: string[] = ['orderNumber', 'customerName', 'customerAddress', 'totalCost', 'status'];
+  public displayedColumns: string[] = ['orderNumber', 'customerName', 'customerAddress', 'totalCost', 'status'];
   constructor(private orderService: OrderService) {
-    this.orders$ = new Observable<Order[]>();
+   
   }
 
   ngOnInit() {

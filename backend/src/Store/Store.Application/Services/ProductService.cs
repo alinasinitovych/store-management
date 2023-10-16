@@ -44,6 +44,12 @@ namespace Store.Application.Services
             return _mapper.Map<IEnumerable<ProductDto>>(allProducts);
         }
 
+        public async Task<IEnumerable<Category>> GetAllCategories()
+        {
+            var allCategories = await _productRepository.GetAllCategories();
+            return _mapper.Map<IEnumerable<Category>>(allCategories);
+        }
+
         public async Task<ProductDto> GetById(int productId)
         {
             var prodoct = await _productRepository.GetByIdAsync(productId);

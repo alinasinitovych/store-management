@@ -40,7 +40,7 @@ namespace Store.Infrustracture.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Store.Domain.Entities.Customer", b =>
@@ -122,6 +122,9 @@ namespace Store.Infrustracture.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProductSize")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -161,9 +164,6 @@ namespace Store.Infrustracture.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("Size")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

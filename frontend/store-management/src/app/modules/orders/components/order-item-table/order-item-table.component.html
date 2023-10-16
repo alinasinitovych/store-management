@@ -1,0 +1,39 @@
+<mat-table [dataSource]="dataSource" class="order-table">
+    <ng-container matColumnDef="Product Id">
+      <mat-header-cell *matHeaderCellDef> Product Id </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.productId }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Product Name">
+      <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.productName }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Product Category">
+      <mat-header-cell *matHeaderCellDef> Product Category </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.productCategory }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Product Size">
+      <mat-header-cell *matHeaderCellDef> Product Size </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.size }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Product Quantity">
+      <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.quantity }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Product Price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.price }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let product">  
+        <button mat-raised-button class="box-button" >Delete</button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>

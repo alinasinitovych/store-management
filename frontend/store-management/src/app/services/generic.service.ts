@@ -16,7 +16,6 @@ export class GenericService<T> {
   }
 
   public getAll(): Observable<T[]> {
-    console.log(`${this.baseUrl}${this.apiUrl}`);
     return this.http.get<T[]>(`${this.baseUrl}${this.apiUrl}`);
   }
 

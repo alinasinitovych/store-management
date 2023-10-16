@@ -15,8 +15,7 @@ export class OrderService extends GenericService<Order> {
     super(http, '/order');
   }
   public createOrder(order: CreateOrderDto): Observable<any> {
-    console.log(order);
-    console.log(`${this.baseUrl}/create`);
+   
     return this.http.post(`${this.baseUrl}${this.apiUrl}/create`, order);
   }
 

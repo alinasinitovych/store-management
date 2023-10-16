@@ -35,6 +35,12 @@ namespace Store.API.Controllers
             var products = await _productService.GetAll();
             return Ok(products);
         }
+        [HttpGet("categories")]
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetAllCategories()
+        {
+            var categories = await _productService.GetAllCategories();
+            return Ok(categories);
+        }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteProduct(int id)

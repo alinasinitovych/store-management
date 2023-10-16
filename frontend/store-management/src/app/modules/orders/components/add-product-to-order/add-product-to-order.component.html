@@ -1,0 +1,49 @@
+<form [formGroup]="orderItemForm" (ngSubmit)="submitForm()" class="vertical-form">
+  <mat-card-header class="box-header">
+    <mat-card-title class="box-title">Add product to order</mat-card-title>
+  </mat-card-header>
+
+  <div class="form-field">
+    <mat-form-field class="stacked-label">
+      <mat-select placeholder="Category" formControlName="productCategory" required
+        (ngModelChange)="onCategoryChange($event)">
+        <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{ category.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <mat-form-field class="stacked-label">
+      <mat-select required placeholder="Product" formControlName="productId"
+       >
+        <mat-option *ngFor="let product of products$ | async" [value]="product.id">{{ product.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <mat-form-field class="stacked-label">
+      <input matInput type="number" placeholder="Quantity" min="1" [max]="availableQuantity" formControlName="quantity"
+        required>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <mat-form-field class="stacked-label">
+      <mat-select placeholder="Size" formControlName="size" required>
+        <mat-option value="0">Small</mat-option>
+        <mat-option value="1">Medium</mat-option>
+        <mat-option value="2">Large</mat-option>
+        <mat-option value="3">Extra large</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <mat-form-field class="stacked-label">
+      <input matInput type="number" placeholder="Price" formControlName="price" [readonly]="true">
+    </mat-form-field>
+  </div>
+  <div class="button-group">
+    <button mat-raised-button class="box-button" type="submit" [disabled]="!orderItemForm.valid">Add Product</button>
+    <button mat-raised-button class="box-button" type="reset" routerLink="/createorder">Cancel</button>
+  </div>
+</form>

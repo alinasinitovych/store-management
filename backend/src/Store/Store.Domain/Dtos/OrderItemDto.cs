@@ -1,4 +1,5 @@
 ﻿using Store.Domain.Entities;
+using Store.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Store.Domain.Dtos
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
+        public ProductSize ProductSize { get; set; }
     }
 }
