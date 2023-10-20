@@ -10,5 +10,6 @@ namespace Store.Domain.Interfaces
 	public interface IProductRepository :  IBaseRepository<Product>
 	{
         Task<IEnumerable<Category>> GetAllCategories();
+        Task<string?> GetCategoryNameAsync(int? id);
     }
 }

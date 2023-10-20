@@ -56,7 +56,7 @@ namespace Store.API.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> Create(ProductDto product)
         {
 

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { CustomerService } from 'src/app/modules/customers/services/customer.service';
 import { ProductService } from 'src/app/modules/products/services/product.service';
-import { SharedService } from '../../services/shared.service';
+import { SharedOrderService } from '../../services/shared-order.service';
 import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-order-form',
@@ -28,7 +28,7 @@ export class OrderFormComponent implements OnInit {
   customers$ = this.customerService.getAll();
   dataSource = new MatTableDataSource<OrderItem>(this.orderForm.value.orderItems);
 
-  constructor(private sharedService: SharedService, private orderService: OrderService, private router: Router, private formBuilder: FormBuilder, private customerService: CustomerService, private productService: ProductService) {
+  constructor(private sharedService: SharedOrderService, private orderService: OrderService, private router: Router, private formBuilder: FormBuilder, private customerService: CustomerService, private productService: ProductService) {
   }
 
 

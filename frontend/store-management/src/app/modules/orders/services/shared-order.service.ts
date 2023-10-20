@@ -4,7 +4,7 @@ import { CreateOrderDto } from '../models/createOrderDto';
 @Injectable({
   providedIn: 'root'
 })
-export class SharedService {
+export class SharedOrderService {
   currentOrder!: CreateOrderDto;
   constructor() {
     this.initCurrentOrder();

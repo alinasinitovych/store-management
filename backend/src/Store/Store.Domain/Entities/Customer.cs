@@ -16,6 +16,11 @@ namespace Store.Domain.Entities
         public decimal TotalOrderCost { get; set; }
         public DateTime DateAdded { get; set; }
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-
+        public void AddOrder(Order order)
+        {
+            OrderCount++;
+            TotalOrderCost += order.OrderItems.Sum(item => item.Price);
+            Orders.Add(order);
+        }
     }
 }

@@ -11,9 +11,6 @@ import { take } from 'rxjs';
 })
 export class CustomerFormComponent {
 
-  /**
-   *
-   */
   constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private router: Router) {
         
   }

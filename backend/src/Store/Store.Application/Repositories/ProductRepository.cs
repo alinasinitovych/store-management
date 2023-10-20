@@ -2,6 +2,7 @@
 using Store.Domain.Entities;
 using Store.Domain.Interfaces;
 using Store.Infrustracture;
+using Store.Infrustracture.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,18 @@ namespace Store.Application.Repositories
         public async Task<IEnumerable<Category>> GetAllCategories()
         {
             return await _context.Categories.ToListAsync();
+        }
+        public async Task<string?> GetCategoryNameAsync(int? id)
+        {
+            if (id != null)
+            {
+                string categoryName = _context.Categories
+                .Where(category => category.Id == id)
+                .Select(category => category.Name)
+                .FirstOrDefault();
+                return categoryName;
+            }
+            return null;
         }
     }
 }

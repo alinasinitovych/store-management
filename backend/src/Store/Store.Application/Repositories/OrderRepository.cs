@@ -25,8 +25,31 @@ namespace Store.Infrustracture
             var orderWithCustomer = await _context.Orders
                 .Include(o => o.Customer)
                 .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+                .ThenInclude(p => p.Categories)
                 .Where(o => o.Id == id).FirstOrDefaultAsync();
             return orderWithCustomer;
+        }
+        public async Task<Order> CreateOrderWithCustomerUpdate(Order order)
+        {
+            /* foreach( var oidto in order.OrderItems)
+             {
+                 var prod = await _context.Products.FindAsync(oidto.ProductId);
+                 if (prod != null)
+                 {
+                     var orderItem = new OrderItem { ProductId = oidto.ProductId,
+                     }
+                 }
+             }*/
+            var createdEntity = await _context.Orders.AddAsync(order);
+            var customer = await _context.Customers.FindAsync(order.CustomerId);
+            if (customer != null)
+            {
+                customer.OrderCount++;
+                customer.TotalOrderCost += order.TotalCost;
+            }
+            await _context.SaveChangesAsync();
+            return createdEntity.Entity;
         }
 
 

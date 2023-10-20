@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable} from 'rxjs';
 import { Product } from 'src/app/modules/products/models/product';
 import { ProductService } from 'src/app/modules/products/services/product.service';
-import { SharedService } from '../../services/shared.service';
+import { SharedOrderService } from '../../services/shared-order.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -31,7 +31,7 @@ export class AddProductToOrderComponent implements OnInit {
     productSize: 0
   })
 
-  constructor(private productService: ProductService, private sharedService: SharedService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private productService: ProductService, private sharedService: SharedOrderService, private formBuilder: FormBuilder, private router: Router) {
   }
   ngOnInit(): void {
     this.productService.getAll().subscribe((products) => {

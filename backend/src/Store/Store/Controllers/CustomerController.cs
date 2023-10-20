@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Store.Application.Services;
 using Store.Application.Services.Interfaces;
 using Store.Domain.Dtos;
 using Store.Domain.Entities;
@@ -40,8 +37,8 @@ namespace Store.API.Controllers
             return Ok(customers);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteCustomer(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
             await _customerService.Delete(id);
             return Ok();
@@ -54,9 +51,8 @@ namespace Store.API.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(CustomerDto customer,
-            [FromServices] IValidator<CustomerDto> validator)
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(CustomerDto customer)
         {
             await _customerService.Create(customer);
             return Ok();

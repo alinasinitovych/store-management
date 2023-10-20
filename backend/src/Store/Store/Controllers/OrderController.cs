@@ -54,12 +54,12 @@ namespace Store.API.Controllers
 
         [HttpPost("create")]
         public async Task<IActionResult> Create(CreateUpdateOrderDto order)
-        { 
+        {
             await _orderService.Create(order);
             return Ok();
         }
 
-        
+
 
     }
 }
