@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable} from 'rxjs';
 import { Product } from 'src/app/modules/products/models/product';
 import { ProductService } from 'src/app/modules/products/services/product.service';
 import { SharedService } from '../../services/shared.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -13,85 +14,92 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./add-product-to-order.component.css']
 })
 export class AddProductToOrderComponent implements OnInit {
-  constructor(private productService: ProductService, private sharedService: SharedService, private formBuilder: FormBuilder, private router: Router) {
-  }
-  availableQuantity: number = 0;
-  products$ = this.productService.getAll();
-  allProducts: Product[] = [];
-  categories$ = this.productService.getCategories();
-  selectedCategoryId: number | null = null;
+  private allProducts: Product[] = [];
+  private selectedCategoryId: number | null = null;
+  public availableQuantity: number = 0;
+  public products$ = this.productService.getAll();
+  public categories$ = this.productService.getCategories();
+  private selectedProduct: Product | undefined;
 
-  orderItemForm: FormGroup = this.formBuilder.group({
+  public orderItemForm: FormGroup = this.formBuilder.group({
     id: 0,
     productId: 0,
-    productName: [''],
-    productCategory: [''],
+    productName: ['', Validators.required],
+    productCategory: ['', Validators.required],
     price: 0,
     quantity: 1,
-    size: 0
+    productSize: 0
   })
-  categoryChosen: boolean = false;
-  selectedCategoryName: string | null = null;
 
+  constructor(private productService: ProductService, private sharedService: SharedService, private formBuilder: FormBuilder, private router: Router) {
+  }
   ngOnInit(): void {
     this.productService.getAll().subscribe((products) => {
       this.allProducts = products;
     });
 
-    this.subscribeToFormChanges();
   }
  
-
-  onCategoryChange(categoryId: number | null) {
-    this.selectedCategoryId = categoryId;
-    if (this.selectedCategoryId) {
-      this.products$ = this.filterProductsByCategory(this.selectedCategoryId);
-    } else {
-      this.products$ = this.productService.getAll();
+  private checkIfOrderItemAlreadyAdded(): boolean{
+    const isDuplicate = this.sharedService.currentOrder.orderItems.some((item) =>{
+      return item.productId === this.orderItemForm.value.productId;
     }
+    );
+    return false;
+  }
+  private updatePriceBasedOnProduct(product : Product, quantity: number) {
+      const totalOrderItemPrice = product.price * quantity;
+      this.orderItemForm.patchValue({price : totalOrderItemPrice});
   }
 
-  filterProductsByCategory(categoryId: number): Observable<Product[]> {
+  private filterProductsByCategory(categoryId: number): Observable<Product[]> {
     const filteredProducts = this.allProducts.filter((product) => product.categoryId === categoryId);
     return new Observable<Product[]>((observer) => {
       observer.next(filteredProducts);
     });
   }
 
-  submitForm() {
-    if (this.orderItemForm.valid) {
+  public onCategoryChange(categoryId: number | null) {
+    this.selectedCategoryId = categoryId;
+    
+    if (this.selectedCategoryId) {
+      this.products$ = this.filterProductsByCategory(this.selectedCategoryId);
+    } else {
+      this.products$ = this.productService.getAll();
+    }
+  }
+ 
+  public onProductChange(productId : number) {
+    this.selectedProduct = this.allProducts.find(product => product.id === productId);
+    if(this.selectedProduct){
+      this.updatePriceBasedOnProduct(this.selectedProduct, this.orderItemForm.value.quantity);
+      this.availableQuantity = this.selectedProduct.availableQuantity;
+      this.orderItemForm.patchValue({ productName: this.selectedProduct.name });
+    } else {
+      this.availableQuantity = 0;
+      this.orderItemForm.patchValue({ productName: '' });
+    }
+  }
+  public onQuantityChange(quantity: number){
+    if(this.selectedProduct){
+      this.updatePriceBasedOnProduct(this.selectedProduct, quantity);
+    }
+  }
+
+  public submitForm() {
+    if (this.orderItemForm.valid && !this.checkIfOrderItemAlreadyAdded()) {
+      this.orderItemForm.patchValue({productCategory: 'aa'})
       this.sharedService.currentOrder.orderItems.push(this.orderItemForm.getRawValue());
       this.router.navigate(['/createorder']);
+    }else if(this.checkIfOrderItemAlreadyAdded()){
+      const orderItemIndex = this.sharedService.currentOrder.orderItems.findIndex(
+        (item) => item.id === this.orderItemForm.value.productId
+      );
+      this.sharedService.currentOrder.orderItems[orderItemIndex].quantity += this.orderItemForm.value.quantity;
     }
 
   }
-  private subscribeToFormChanges() {
-    this.orderItemForm.get('productId')?.valueChanges.subscribe((productId) => {
-      this.updatePriceBasedOnProduct(productId, this.orderItemForm.get('quantity')?.value);
-      const selectedProduct = this.allProducts.find(product => product.id === productId);
-      if (selectedProduct) {
-        this.availableQuantity = selectedProduct.availableQuantity;
-        this.orderItemForm.patchValue({ productName: selectedProduct.name });
-        this.orderItemForm.patchValue({ price: selectedProduct.price * this.orderItemForm.value.quantity })
+  
 
-      } else {
-        this.availableQuantity = 0;
-        this.orderItemForm.patchValue({ productName: '' });
-      }
-    });
-
-    this.orderItemForm.get('quantity')?.valueChanges.subscribe((quantity) => {
-      const productId = this.orderItemForm.get('productId')?.value;
-      this.updatePriceBasedOnProduct(productId, quantity);
-    });
-  }
-
-  private updatePriceBasedOnProduct(productId: number | null, quantity: number) {
-    const selectedProduct = this.allProducts.find((product) => product.id === productId);
-    if (selectedProduct) {
-      const price = selectedProduct.price * quantity;
-      this.orderItemForm.get('price')?.setValue(price);
-    }
-  }
-
+  
 }

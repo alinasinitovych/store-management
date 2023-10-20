@@ -23,7 +23,10 @@ export class GenericService<T> {
     return this.http.put<T>(`${this.baseUrl}${this.apiUrl}/${id}`, item);
   }
 
-  public delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}${this.apiUrl}/${id}`);
-  }
+  public delete(id: number): Observable<T> {
+    console.log(`${this.baseUrl}${this.apiUrl}/${id}`);
+    return this.http.delete<T>(`${this.baseUrl}${this.apiUrl}/${id}`);
+}
+
+  
 }

@@ -1,9 +1,12 @@
 <form [formGroup]="orderForm" (ngSubmit)="submitForm()">
+  <mat-card-header class="box-header">
+    <mat-card-title>New order</mat-card-title>
+  </mat-card-header>
   <!-- customer -->
   <div>
     <mat-form-field>
-      
-      <mat-select placeholder="Customer" formControlName="customerId" required>
+
+      <mat-select placeholder="Customer" formControlName="customerId">
         <mat-option *ngFor="let customer of customers$ | async" [value]="customer.id">{{customer.firstName + ' ' +
           customer.lastName }}</mat-option>
       </mat-select>
@@ -12,8 +15,8 @@
   <!-- status -->
   <div>
     <mat-form-field>
-      
-      <mat-select placeholder = 'Status' formControlName="status" required>
+
+      <mat-select placeholder='Status' formControlName="status">
         <mat-option value="0">New</mat-option>
         <mat-option value="1">Paid</mat-option>
         <mat-option value="2">Shipped</mat-option>
@@ -24,24 +27,24 @@
   </div>
   <!-- toral cost -->
   <div class="select-label">
-    Total: {{ totalCost | currency }}
+    Total: {{ orderForm.get('totalCost')?.value | currency }}
   </div>
   <!-- add products-->
   <div class="box-header">
     <h3>Add Products:</h3>
     <button mat-raised-button class="box-button" (click)="onAddProductClick()">Add product</button>
   </div>
-  <app-order-item-table  [dataSource]="dataSource">
+  <app-order-item-table [dataSource]="dataSource">
 
   </app-order-item-table>
   <!-- comment -->
-  
-  <div><mat-form-field>
-    
-    <textarea matInput formControlName="comment" placeholder="Enter comment..."></textarea>
-  </mat-form-field>
-</div>
+
+  <div>
+    <mat-form-field>
+      <textarea matInput formControlName="comment" placeholder="Enter comment..."></textarea>
+    </mat-form-field>
+  </div>
   <!-- create order button -->
   <button mat-raised-button class="box-button" [disabled]="!orderForm.valid" type="submit">Create Order</button>
-  <button mat-raised-button class="box-button" type="reset" routerLink="/orders">Cancel</button>
+  <button mat-raised-button class="box-button" type="reset" (click)="onCancelClick()">Cancel</button>
 </form>

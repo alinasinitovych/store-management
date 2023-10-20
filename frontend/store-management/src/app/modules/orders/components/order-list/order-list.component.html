@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header class="box-header">
     <mat-card-title class="box-title">Orders</mat-card-title>
-    <button mat-raised-button color="primary" routerLink="/createorder">Create New Order</button>
+    <button mat-raised-button  routerLink="/createorder">Create New Order</button>
   </mat-card-header>
 
   <mat-table [dataSource]="orders$ | async" class="mat-table">

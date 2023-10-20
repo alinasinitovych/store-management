@@ -17,38 +17,54 @@ export class OrderFormComponent implements OnInit {
 
   orderForm: FormGroup = this.formBuilder.group({
     id: 0,
-    status: 0,
+    status: '',
     orderDate: [''],
-    customerId: [''],
-    comment: [''],
+    customerId: 0,
+    comment: '',
+    totalCost: 0,
     orderItems: []
   });
 
-  totalCost: number = 0;
   customers$ = this.customerService.getAll();
   dataSource = new MatTableDataSource<OrderItem>(this.orderForm.value.orderItems);
 
   constructor(private sharedService: SharedService, private orderService: OrderService, private router: Router, private formBuilder: FormBuilder, private customerService: CustomerService, private productService: ProductService) {
   }
 
+
   ngOnInit() {
     if (this.orderForm) {
       this.orderForm.patchValue(this.sharedService.currentOrder);
+
+      this.calculateTotal();
       this.dataSource = (this.orderForm.value.orderItems);
-      this.calculateTotalCost();
     }
   }
+  private calculateTotal() {
+
+    const orderItems = this.sharedService.currentOrder.orderItems;
+    const totalPrice = orderItems.reduce((total, item) => total + item.price, 0);
+
+    this.orderForm.patchValue({ totalCost: totalPrice });
+  }
+
 
   submitForm() {
 
     if (this.orderForm.valid) {
       const ordetData = this.orderForm.getRawValue();
       ordetData.status = Number(this.orderForm.value.status);
+      
       ordetData.orderDate = new Date();
       ordetData.orderItems = this.sharedService.currentOrder.orderItems;
+      ordetData.orderItems.forEach((item: OrderItem) => {
+        item.productSize = Number(item.productSize);
+      });
+      console.log(ordetData)
       this.orderService.createOrder(ordetData).pipe(take(1)).subscribe(() => {
-        this.cleanCurrentOrder();
+        this.sharedService.initCurrentOrder();
         this.router.navigate(['/orders']);
+
       });
     }
   }
@@ -57,32 +73,22 @@ export class OrderFormComponent implements OnInit {
     const orderItemsControl = this.orderForm.get('orderItems');
     if (orderItemsControl) {
       orderItemsControl.setValue(this.sharedService.currentOrder.orderItems);
-    } this.sharedService.currentOrder = this.orderForm.getRawValue();
-    this.router.navigate(['/add-product']);
-    
-  }
-  calculateTotalCost():void{
-    this.totalCost = this.sharedService.currentOrder.orderItems.reduce((price, item) => price + item.price, 0);
+    }
+    this.sharedService.currentOrder = this.orderForm.getRawValue();
+    this.router.navigate(['/add-order-item']);
   }
 
 
-  cleanCurrentOrder(): void {
-    this.sharedService.currentOrder = {
-      id: 0,
-      status: 0,
-      orderDate: new Date(),
-      customerId: 0,
-      comment: '',
-      orderItems: []
-    };
-  }
-
-  onDeleteOrderItem(orderItem : OrderItem):void{
+  onDeleteOrderItem(orderItem: OrderItem): void {
     const index = this.sharedService.currentOrder.orderItems.indexOf(orderItem);
-    if(index !== -1){
+    if (index !== -1) {
       this.sharedService.currentOrder.orderItems.splice(index, 1);
       this.dataSource.data = this.sharedService.currentOrder.orderItems;
-      this.calculateTotalCost();
     }
+  }
+
+  onCancelClick() {
+    this.sharedService.initCurrentOrder();
+    this.router.navigate(['/orders']);
   }
 }

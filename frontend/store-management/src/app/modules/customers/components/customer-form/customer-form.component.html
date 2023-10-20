@@ -1,0 +1,28 @@
+<form [formGroup]="customerForm" (ngSubmit)="submitForm()">
+    <div>
+        <mat-form-field class="stacked-label">
+            <input matInput formControlName="dateAdded" type="text" [readonly]="true">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Customer first name" formControlName="firstName" required>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Customer last name" formControlName="lastName" required>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <textarea matInput placeholder="Customer address" formControlName="address" required></textarea>
+        </mat-form-field>
+    </div>
+    <div>
+        <div class="button-group">
+            <button mat-raised-button class="box-button" type="submit" [disabled]="!customerForm.valid">Add
+                Customer</button>
+        </div>
+    </div>
+</form>

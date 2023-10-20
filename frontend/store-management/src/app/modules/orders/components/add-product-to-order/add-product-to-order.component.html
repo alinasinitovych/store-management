@@ -15,7 +15,7 @@
   <div class="form-field">
     <mat-form-field class="stacked-label">
       <mat-select required placeholder="Product" formControlName="productId"
-       >
+      (ngModelChange)="onProductChange($event)">
         <mat-option *ngFor="let product of products$ | async" [value]="product.id">{{ product.name }}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -23,13 +23,13 @@
   <div class="form-field">
     <mat-form-field class="stacked-label">
       <input matInput type="number" placeholder="Quantity" min="1" [max]="availableQuantity" formControlName="quantity"
-        required>
+        required (ngModelChange)="onQuantityChange($event)">
     </mat-form-field>
   </div>
 
   <div class="form-field">
     <mat-form-field class="stacked-label">
-      <mat-select placeholder="Size" formControlName="size" required>
+      <mat-select required placeholder="Size" formControlName="productSize" >
         <mat-option value="0">Small</mat-option>
         <mat-option value="1">Medium</mat-option>
         <mat-option value="2">Large</mat-option>

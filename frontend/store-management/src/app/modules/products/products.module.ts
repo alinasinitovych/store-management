@@ -13,10 +13,12 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ProductsRoutingModule } from './products-routing.module';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 @NgModule({
   declarations: [
-    ProductsListComponent
+    ProductsListComponent,
+    ProductFormComponent
   ],
   imports: [
     CommonModule,

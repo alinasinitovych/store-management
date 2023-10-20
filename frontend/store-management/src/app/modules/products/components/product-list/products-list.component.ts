@@ -11,13 +11,17 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductsListComponent implements OnInit {
   products$: Observable<any> = this.productService.getAll();
-  public displayedColumns: string[] = ['id', 'name', 'category', 'size', 'availableQuantity', 'price', 'action'];
+  public displayedColumns: string[] = ['id', 'name', 'category', 'availableQuantity', 'price', 'action'];
   dataSource: MatTableDataSource<any>;
     constructor(private productService: ProductService) {
       this.dataSource = new MatTableDataSource<Product>();
   }
   ngOnInit(): void {
    
+  }
+  deleteProducts(id: number){
+    console.log(id)
+    this.productService.delete(id);
   }
 }
 

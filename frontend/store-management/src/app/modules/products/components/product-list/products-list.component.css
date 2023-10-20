@@ -1,0 +1,12 @@
+.box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.box-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(126, 126, 255);
+}

@@ -6,13 +6,17 @@ import { ProductsListComponent } from './modules/products/components/product-lis
 import { AddProductToOrderComponent } from './modules/orders/components/add-product-to-order/add-product-to-order.component';
 import { OrderDetailsComponent } from './modules/orders/components/order-details/order-details.component';
 import { CustomerListComponent } from './modules/customers/components/customer-list/customer-list.component';
+import { CustomerFormComponent } from './modules/customers/components/customer-form/customer-form.component';
+import { ProductFormComponent } from './modules/products/components/product-form/product-form.component';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./modules/orders/orders.module').then((m) => m.OrdersModule) },
   { path: 'customers', loadChildren: () => import('./modules/customers/customers.module').then((m) => m.CustomersModule) },
+  {path: 'customers/createcustomer', component: CustomerFormComponent},
   { path: 'createorder', component: OrderFormComponent },
   { path: 'products', loadChildren: () => import('./modules/products/products.module').then((m) => m.ProductsModule) },
-  { path: 'add-product', component: AddProductToOrderComponent },
+  {path: 'products/createproduct', component: ProductFormComponent},
+  { path: 'add-order-item', component: AddProductToOrderComponent },
   { path: 'orderdata/:id', component: OrderDetailsComponent },
 
 ];

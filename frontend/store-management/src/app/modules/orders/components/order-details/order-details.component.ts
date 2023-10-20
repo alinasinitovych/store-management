@@ -6,6 +6,7 @@ import { OrderService } from '../../services/order.service';
 import { OrderStatus } from '../../models/orderStatus';
 import { MatTableDataSource } from '@angular/material/table';
 import { OrderItem } from '../../models/orderItem';
+import { OrderStatusText } from '../../models/orderStatusText';
 
 @Component({
   selector: 'app-order-details',
@@ -29,28 +30,14 @@ export class OrderDetailsComponent implements OnInit {
         this.order = order;
         
         this.dataSource = new MatTableDataSource<OrderItem>(this.order?.orderItems);
-        console.log(this.order?.orderItems)
-
-        console.log(this.order);
       });
     });
   }
 
   getOrderStatusName(status: OrderStatus | undefined): string {
-    if (status == undefined) {
+    if (status === undefined || OrderStatusText[status] === undefined) {
       return 'Unknown';
     }
-    switch (status) {
-      case OrderStatus.New:
-        return 'New';
-      case OrderStatus.Paid:
-        return 'Paid';
-      case OrderStatus.Shipped:
-        return 'Shipped';
-      case OrderStatus.Delivered:
-        return 'Delivered';
-      case OrderStatus.Closed:
-        return 'Closed';
-    }
+    return OrderStatusText[status];
   }
 }

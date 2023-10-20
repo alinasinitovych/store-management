@@ -8,7 +8,19 @@
 .box-title {
   font-size: 24px;
   font-weight: bold;
+  color: rgb(126, 126, 255);
 }
 .no-link-style {
   cursor: pointer; 
+}
+.box-button {
+  border: 3px solid #474747;
+  background-color: #d1d1d1;
+  padding: 10px;
+  width: 10%;
+  text-align: center;
+  border-radius: 10px;
+  margin-right: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }

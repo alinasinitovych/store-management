@@ -1,0 +1,39 @@
+<form [formGroup]="productForm" (ngSubmit)="submitForm()">
+    <mat-card-header class="box-header">
+        <mat-card-title>New product</mat-card-title>
+    </mat-card-header>
+    <div>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Product name" formControlName="name" required>
+        </mat-form-field>
+    </div>
+    <div class="form-field">
+        <mat-form-field class="stacked-label">
+            <mat-select placeholder="Category" formControlName="categoryId" required>
+                <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{ category.name
+                    }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="form-field">
+        <mat-form-field class="stacked-label">
+            <input matInput type="number" placeholder="Available Quantity" min="1" formControlName="availableQuantity"
+                required>
+        </mat-form-field>
+    </div>
+    <div class="form-field">
+        <mat-form-field class="stacked-label">
+            <input matInput type="number" placeholder="Price" min="1" formControlName="price" required>
+        </mat-form-field>
+    </div>
+    <div>
+
+        <mat-form-field>
+            <textarea matInput formControlName="description" placeholder="Enter description..."></textarea>
+        </mat-form-field>
+    </div>
+    <div class="button-group">
+        <button mat-raised-button class="box-button" type="submit" [disabled]="!productForm.valid">Add
+            Product</button>
+    </div>
+</form>
