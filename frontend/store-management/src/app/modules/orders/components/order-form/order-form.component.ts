@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
-  styleUrls: ['./order-form.component.css']
+  styleUrls: ['./order-form.component.css', '../../../shared/shared.style.css']
 })
 export class OrderFormComponent implements OnInit {
 
@@ -54,7 +54,7 @@ export class OrderFormComponent implements OnInit {
     if (this.orderForm.valid) {
       const ordetData = this.orderForm.getRawValue();
       ordetData.status = Number(this.orderForm.value.status);
-      
+
       ordetData.orderDate = new Date();
       ordetData.orderItems = this.sharedService.currentOrder.orderItems;
       ordetData.orderItems.forEach((item: OrderItem) => {
@@ -75,7 +75,7 @@ export class OrderFormComponent implements OnInit {
       orderItemsControl.setValue(this.sharedService.currentOrder.orderItems);
     }
     this.sharedService.currentOrder = this.orderForm.getRawValue();
-    this.router.navigate(['/add-order-item']);
+    this.router.navigate(['/orders/add-order-item']);
   }
 
 

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.development';
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.css']
+  styleUrls: ['./order-list.component.css', '../../../shared/shared.style.css']
 
 })
 export class OrderListComponent implements OnInit {
@@ -16,7 +16,7 @@ export class OrderListComponent implements OnInit {
   orderStatus = OrderStatus;
   public displayedColumns: string[] = ['orderNumber', 'customerName', 'customerAddress', 'totalCost', 'status'];
   constructor(private orderService: OrderService) {
-   
+
   }
 
   ngOnInit() {

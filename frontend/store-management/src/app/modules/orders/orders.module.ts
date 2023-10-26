@@ -12,6 +12,7 @@ import { AddProductToOrderComponent } from './components/add-product-to-order/ad
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { OrderItemTableComponent } from './components/order-item-table/order-item-table.component';
 import { OrdersRoutingModule } from './orders-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [

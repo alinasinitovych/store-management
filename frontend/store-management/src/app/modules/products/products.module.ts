@@ -10,10 +10,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from 'src/app/app-routing.module';
+
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
     ReactiveFormsModule,
     MatSelectModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+
   ]
 })
 export class ProductsModule { }

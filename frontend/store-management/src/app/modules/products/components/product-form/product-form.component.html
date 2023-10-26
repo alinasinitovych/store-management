@@ -1,6 +1,6 @@
 <form [formGroup]="productForm" (ngSubmit)="submitForm()">
     <mat-card-header class="box-header">
-        <mat-card-title>New product</mat-card-title>
+        <mat-card-title class="box-title">New Product</mat-card-title>
     </mat-card-header>
     <div>
         <mat-form-field>
@@ -17,13 +17,12 @@
     </div>
     <div class="form-field">
         <mat-form-field class="stacked-label">
-            <input matInput type="number" placeholder="Available Quantity" min="1" formControlName="availableQuantity"
-                required>
+            <input matInput type="number" placeholder="Available Quantity" min="1" formControlName="availableQuantity">
         </mat-form-field>
     </div>
     <div class="form-field">
         <mat-form-field class="stacked-label">
-            <input matInput type="number" placeholder="Price" min="1" formControlName="price" required>
+            <input matInput type="number" placeholder="Price" min="1" formControlName="price">
         </mat-form-field>
     </div>
     <div>

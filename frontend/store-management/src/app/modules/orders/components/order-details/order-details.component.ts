@@ -11,7 +11,7 @@ import { OrderStatusText } from '../../models/orderStatusText';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
-  styleUrls: ['./order-details.component.css']
+  styleUrls: ['./order-details.component.css', '../../../shared/shared.style.css']
 })
 export class OrderDetailsComponent implements OnInit {
   displayedColumns: string[] = ['Product Id', 'Product Name', 'Product Category', 'Product Size', 'Product Quantity', 'Product Price', 'Action'];
@@ -28,7 +28,7 @@ export class OrderDetailsComponent implements OnInit {
       const orderId = +params['id'];
       this.orderService.getById(orderId).subscribe((order) => {
         this.order = order;
-        
+
         this.dataSource = new MatTableDataSource<OrderItem>(this.order?.orderItems);
       });
     });

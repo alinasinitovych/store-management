@@ -1,26 +1,18 @@
-<h1>
-    View order
-</h1>
-<div class="orderData">
-    <div>
-        <p>
-            {{order?.id}}
-        </p>
-        <p>
-            {{order?.orderDate}}
-        </p>
-        <p>
-            {{order?.customerName}}
-        </p>
-        <p>
-            {{getOrderStatusName(order?.status)}}
-        </p>
-        <p>
-            {{order?.totalCost}}
-        </p>
+<mat-card-header class="box-header">
+    <mat-card-title class="box-title">View order</mat-card-title>
+    <button mat-raised-button routerLink="/customers/createcustomer">Edit Order</button>
+</mat-card-header>
 
-    </div>
-    <app-order-item-table  [dataSource]="dataSource">
-
-    </app-order-item-table>
+<div class="orderInfo">
+    <p>Order Id: <span>{{order?.id}}</span></p>
+    <p>Order Date: <span>{{order?.orderDate}}</span></p>
 </div>
+
+<p>Customer Name: {{order?.customerName}}</p>
+
+<p>Status: {{getOrderStatusName(order?.status)}}</p>
+
+<p>Cost: {{order?.totalCost}}</p>
+
+
+<app-order-item-table [dataSource]="dataSource"></app-order-item-table>

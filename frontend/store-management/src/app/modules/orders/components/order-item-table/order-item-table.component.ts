@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './order-item-table.component.html',
   styleUrls: ['./order-item-table.component.css']
 })
-export class OrderItemTableComponent implements OnInit{
+export class OrderItemTableComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.dataSource)
   }

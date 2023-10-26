@@ -42,7 +42,7 @@ namespace Store.API.Controllers
             return Ok(categories);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             await _productService.Delete(id);

@@ -11,13 +11,9 @@ import { ProductFormComponent } from './modules/products/components/product-form
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./modules/orders/orders.module').then((m) => m.OrdersModule) },
+  { path: 'orders', loadChildren: () => import('./modules/orders/orders.module').then((m) => m.OrdersModule) },
   { path: 'customers', loadChildren: () => import('./modules/customers/customers.module').then((m) => m.CustomersModule) },
-  {path: 'customers/createcustomer', component: CustomerFormComponent},
-  { path: 'createorder', component: OrderFormComponent },
   { path: 'products', loadChildren: () => import('./modules/products/products.module').then((m) => m.ProductsModule) },
-  {path: 'products/createproduct', component: ProductFormComponent},
-  { path: 'add-order-item', component: AddProductToOrderComponent },
-  { path: 'orderdata/:id', component: OrderDetailsComponent },
 
 ];
 

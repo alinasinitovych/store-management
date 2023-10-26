@@ -1,14 +1,14 @@
 <mat-card>
   <mat-card-header class="box-header">
     <mat-card-title class="box-title">Orders</mat-card-title>
-    <button mat-raised-button  routerLink="/createorder">Create New Order</button>
+    <button mat-raised-button routerLink="/orders/createorder">Create New Order</button>
   </mat-card-header>
 
-  <mat-table [dataSource]="orders$ | async" class="mat-table">
+  <mat-table [dataSource]="orders$ | async" class="order-table">
     <ng-container matColumnDef="orderNumber">
       <mat-header-cell *matHeaderCellDef> Order Number </mat-header-cell>
       <mat-cell *matCellDef="let order">
-        <a [routerLink]="['/orderdata', order.id]" >{{ order.id }}</a>
+        <a [routerLink]="['/orders/details', order.id]">{{ order.id }}</a>
       </mat-cell>
     </ng-container>
 

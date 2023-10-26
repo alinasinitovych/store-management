@@ -7,13 +7,13 @@ import { take } from 'rxjs';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
-  styleUrls: [ './product-form.component.css']
+  styleUrls: ['./product-form.component.css', '../../../shared/shared.style.css']
 })
 export class ProductFormComponent {
-  
-  
+
+
   categories$ = this.productService.getCategories();
-  productForm : FormGroup = this.formBuilder.group({
+  productForm: FormGroup = this.formBuilder.group({
     id: 0,
     name: [''],
     availableQuantity: 0,
@@ -23,10 +23,10 @@ export class ProductFormComponent {
     categoryName: [''],
     createdDate: new Date()
   })
-  constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder ) {
+  constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder) {
   }
 
-  submitForm(){
+  submitForm() {
     this.productService.create(this.productForm.getRawValue()).pipe(take(1)).subscribe(() => {
       this.router.navigate(['/products']);
     })
