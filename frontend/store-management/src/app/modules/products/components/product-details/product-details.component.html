@@ -1,0 +1,19 @@
+<mat-card-header class="box-header">
+    <mat-card-title class="box-title">View Product</mat-card-title>
+    <button class="box-button" mat-raised-button [routerLink]="['/products/edit', product?.id]">Edit Product</button>
+</mat-card-header>
+
+<div class="orderInfo" *ngIf="product">
+    <p>Product Id: <span>{{product.id}}</span></p>
+    <p>Created Date: <span>{{product.createdDate | date:'shortDate'}}</span></p>
+</div>
+
+<p>Product Name: {{product?.name}}</p>
+
+<p>Product Category:</p>
+
+<p>Cost: {{product?.price | currency}}</p>
+<p>
+    Description: {{product?.description}}
+</p>
+

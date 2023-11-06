@@ -32,24 +32,41 @@ namespace Store.Infrustracture
         }
         public async Task<Order> CreateOrderWithCustomerUpdate(Order order)
         {
-            /* foreach( var oidto in order.OrderItems)
-             {
-                 var prod = await _context.Products.FindAsync(oidto.ProductId);
-                 if (prod != null)
-                 {
-                     var orderItem = new OrderItem { ProductId = oidto.ProductId,
-                     }
-                 }
-             }*/
+            
             var createdEntity = await _context.Orders.AddAsync(order);
             var customer = await _context.Customers.FindAsync(order.CustomerId);
+
+            
             if (customer != null)
             {
                 customer.OrderCount++;
                 customer.TotalOrderCost += order.TotalCost;
             }
+            foreach(var orderItem in order.OrderItems)
+            {
+                var product = await _context.Products.FindAsync(orderItem.ProductId);
+                if (product != null)
+                {
+                    if(orderItem.Quantity <= product.AvailableQuantity)
+                    {
+                        product.AvailableQuantity -= orderItem.Quantity;
+
+                    }
+                    else
+                    {
+                        throw new Exception("Ordered quantity is more than available quantity");
+                    }
+                }
+            }
             await _context.SaveChangesAsync();
             return createdEntity.Entity;
+        }
+        public async Task<Order> GetOrderWithProductsAsync(int orderId)
+        {
+            return await _context.Orders
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product)
+                .FirstOrDefaultAsync(o => o.Id == orderId);
         }
 
 

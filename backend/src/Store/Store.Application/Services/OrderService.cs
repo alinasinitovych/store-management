@@ -85,14 +85,20 @@ namespace Store.Application.Services
             var orders = await _orderItemRepository.GetOrderItemsByOrderId(orderId);
             return _mapper.Map<IEnumerable<OrderItemDto>>(orders);
         }
-        public async Task<OrderItem> AddOrderItem(int orderId, OrderItem orderItem)
+        public async Task<OrderItem> AddOrderItem( OrderItemDto orderItemDto)
         {
-            await _orderItemRepository.Add(orderId, orderItem);
+            var orderItem = _mapper.Map<OrderItem>(orderItemDto);
+            await _orderItemRepository.Add( orderItem);
             return orderItem;
         }
         public async Task Update(CreateUpdateOrderDto orderDto)
         {
             var order = _mapper.Map<Order>(orderDto);
+            foreach (var orderItem in order.OrderItems)
+            {
+                orderItem.Product = await _productRepository.GetByIdAsync(orderItem.ProductId);
+            }
+
             await _orderRepository.UpdateAsync(order);
         }
 

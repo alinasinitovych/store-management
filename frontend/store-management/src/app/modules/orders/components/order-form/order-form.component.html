@@ -1,6 +1,6 @@
 <form [formGroup]="orderForm" (ngSubmit)="submitForm()">
   <mat-card-header class="box-header">
-    <mat-card-title class="box-title">New order</mat-card-title>
+    <mat-card-title class="box-title">{{headerText}}</mat-card-title>
   </mat-card-header>
   <!-- customer -->
   <div>
@@ -15,13 +15,12 @@
   <!-- status -->
   <div>
     <mat-form-field>
-
-      <mat-select placeholder='Status' formControlName="status">
-        <mat-option value="0">New</mat-option>
-        <mat-option value="1">Paid</mat-option>
-        <mat-option value="2">Shipped</mat-option>
-        <mat-option value="3">Delivered</mat-option>
-        <mat-option value="4">Closed</mat-option>
+      <mat-select placeholder="Status" formControlName="status">
+        <mat-option [value]="0">New</mat-option>
+        <mat-option [value]="1">Paid</mat-option>
+        <mat-option [value]="2">Shipped</mat-option>
+        <mat-option [value]="3">Delivered</mat-option>
+        <mat-option [value]="4">Closed</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -40,11 +39,15 @@
   <!-- comment -->
 
   <div>
-    <mat-form-field>
+
+    <mat-form-field class="comment">
+      <mat-label>Comment</mat-label>
       <textarea matInput formControlName="comment" placeholder="Enter comment..."></textarea>
     </mat-form-field>
   </div>
   <!-- create order button -->
-  <button mat-raised-button class="box-button" [disabled]="!orderForm.valid" type="submit">Create Order</button>
-  <button mat-raised-button class="box-button" type="reset" (click)="onCancelClick()">Cancel</button>
+  <div class="button-group">
+    <button mat-raised-button class="box-button" [disabled]="!orderForm.valid" type="submit">{{headerText}}</button>
+    <button mat-raised-button class="box-button" type="reset" (click)="onCancelClick()">Cancel</button>
+  </div>
 </form>

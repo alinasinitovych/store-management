@@ -18,7 +18,7 @@ namespace Store.Application.Services.Interfaces
         Task<IEnumerable<OrderDto>> GetAll();
         Task<OrderDto> GetById(int orderId);
         Task<IEnumerable<OrderItemDto>> GetOrderItemsByOrderId(int orderId);
-        Task<OrderItem> AddOrderItem(int orderId, OrderItem orderItem);
+        Task<OrderItem> AddOrderItem( OrderItemDto orderItem);
 
     }
 }

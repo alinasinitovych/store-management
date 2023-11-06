@@ -49,14 +49,14 @@ namespace Store.API.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(ProductDto product)
         {
             await _productService.Update(product);
             return Ok();
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> Create(ProductDto product)
         {
 

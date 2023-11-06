@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatDialogModule } from '@angular/material/dialog';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent
@@ -16,9 +17,13 @@ import {  MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
-    MatSelectModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    ToastrModule.forRoot({
+      timeOut: 3000, 
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }), 
     
   ],
   providers: [],

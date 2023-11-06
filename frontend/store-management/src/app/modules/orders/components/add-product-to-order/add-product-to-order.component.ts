@@ -1,3 +1,4 @@
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -16,6 +17,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddProductToOrderComponent implements OnInit {
   private allProducts: Product[] = [];
   private selectedCategoryId: number | null = null;
+  private categoryName: string = ''
+
   public availableQuantity: number = 0;
   public products$ = this.productService.getAll();
   public categories$ = this.productService.getCategories();
@@ -24,6 +27,7 @@ export class AddProductToOrderComponent implements OnInit {
   public orderItemForm: FormGroup = this.formBuilder.group({
     id: 0,
     productId: 0,
+    orderId: this.sharedService.currentOrder.id,
     productName: ['', Validators.required],
     productCategory: ['', Validators.required],
     price: 0,
@@ -31,31 +35,16 @@ export class AddProductToOrderComponent implements OnInit {
     productSize: 0
   })
 
-  constructor(private productService: ProductService, private sharedService: SharedOrderService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private productService: ProductService,
+    private sharedService: SharedOrderService,
+    private formBuilder: FormBuilder,
+    private router: Router) {
   }
+
   ngOnInit(): void {
     this.productService.getAll().subscribe((products) => {
       this.allProducts = products;
-    });
-
-  }
-
-  private checkIfOrderItemAlreadyAdded(): boolean {
-    const isDuplicate = this.sharedService.currentOrder.orderItems.some((item) => {
-      return item.productId === this.orderItemForm.value.productId;
-    }
-    );
-    return false;
-  }
-  private updatePriceBasedOnProduct(product: Product, quantity: number) {
-    const totalOrderItemPrice = product.price * quantity;
-    this.orderItemForm.patchValue({ price: totalOrderItemPrice });
-  }
-
-  private filterProductsByCategory(categoryId: number): Observable<Product[]> {
-    const filteredProducts = this.allProducts.filter((product) => product.categoryId === categoryId);
-    return new Observable<Product[]>((observer) => {
-      observer.next(filteredProducts);
     });
   }
 
@@ -75,6 +64,7 @@ export class AddProductToOrderComponent implements OnInit {
       this.updatePriceBasedOnProduct(this.selectedProduct, this.orderItemForm.value.quantity);
       this.availableQuantity = this.selectedProduct.availableQuantity;
       this.orderItemForm.patchValue({ productName: this.selectedProduct.name });
+      this.categoryName = this.selectedProduct.categoryName;
     } else {
       this.availableQuantity = 0;
       this.orderItemForm.patchValue({ productName: '' });
@@ -87,19 +77,28 @@ export class AddProductToOrderComponent implements OnInit {
   }
 
   public submitForm() {
-    if (this.orderItemForm.valid && !this.checkIfOrderItemAlreadyAdded()) {
-      this.orderItemForm.patchValue({ productCategory: 'aa' })
+    if (this.orderItemForm.valid) {
+      this.orderItemForm.patchValue({ productCategory: this.categoryName })
       this.sharedService.currentOrder.orderItems.push(this.orderItemForm.getRawValue());
-      this.router.navigate(['/orders/createorder']);
-    } else if (this.checkIfOrderItemAlreadyAdded()) {
-      const orderItemIndex = this.sharedService.currentOrder.orderItems.findIndex(
-        (item) => item.id === this.orderItemForm.value.productId
-      );
-      this.sharedService.currentOrder.orderItems[orderItemIndex].quantity += this.orderItemForm.value.quantity;
-    }
 
+      if (this.sharedService.isEditing) {
+        this.sharedService.newOrderItems.push(this.orderItemForm.getRawValue())
+        this.router.navigate(['/orders/edit', this.sharedService.currentOrder.id]);
+      } else {
+        this.router.navigate(['/orders/create']);
+
+      }
+    }
+  }
+  private updatePriceBasedOnProduct(product: Product, quantity: number) {
+    const totalOrderItemPrice = product.price * quantity;
+    this.orderItemForm.patchValue({ price: totalOrderItemPrice });
   }
 
-
-
+  private filterProductsByCategory(categoryId: number): Observable<Product[]> {
+    const filteredProducts = this.allProducts.filter((product) => product.categoryId === categoryId);
+    return new Observable<Product[]>((observer) => {
+      observer.next(filteredProducts);
+    });
+  }
 }

@@ -14,12 +14,14 @@ import { OrderStatusText } from '../../models/orderStatusText';
   styleUrls: ['./order-details.component.css', '../../../shared/shared.style.css']
 })
 export class OrderDetailsComponent implements OnInit {
+  
   displayedColumns: string[] = ['Product Id', 'Product Name', 'Product Category', 'Product Size', 'Product Quantity', 'Product Price', 'Action'];
-
-  order: Order | undefined;
+  order!: Order;
   dataSource: MatTableDataSource<OrderItem>;
 
-  constructor(private route: ActivatedRoute, private orderService: OrderService) {
+  constructor(
+    private route: ActivatedRoute,
+    private orderService: OrderService) {
     this.dataSource = new MatTableDataSource<OrderItem>();
   }
 
@@ -28,16 +30,15 @@ export class OrderDetailsComponent implements OnInit {
       const orderId = +params['id'];
       this.orderService.getById(orderId).subscribe((order) => {
         this.order = order;
-
+        console.log(order)
         this.dataSource = new MatTableDataSource<OrderItem>(this.order?.orderItems);
       });
     });
   }
 
   getOrderStatusName(status: OrderStatus | undefined): string {
-    if (status === undefined || OrderStatusText[status] === undefined) {
-      return 'Unknown';
-    }
-    return OrderStatusText[status];
+    if (status != undefined)
+      return OrderStatusText[status];
+    return 'undefined';
   }
 }

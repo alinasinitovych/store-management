@@ -44,7 +44,7 @@ namespace Store.API.Controllers
             return Ok();
         }
 
-        [HttpPost("update")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(CreateUpdateOrderDto order)
         {
 
@@ -52,10 +52,16 @@ namespace Store.API.Controllers
             return Ok();
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> Create(CreateUpdateOrderDto order)
         {
             await _orderService.Create(order);
+            return Ok();
+        }
+        [HttpPost("OrderItem")]
+        public async Task<IActionResult> CreateOrderItem(OrderItemDto orderItem)
+        {
+            await _orderService.AddOrderItem(orderItem);
             return Ok();
         }
 

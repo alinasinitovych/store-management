@@ -12,7 +12,9 @@ import { AddProductToOrderComponent } from './components/add-product-to-order/ad
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { OrderItemTableComponent } from './components/order-item-table/order-item-table.component';
 import { OrdersRoutingModule } from './orders-routing.module';
-import { SharedModule } from '../shared/shared.module';
+
+import { ProductsRoutingModule } from '../products/products-routing.module';
+import { CustomersRoutingModule } from '../customers/customers-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     OrdersRoutingModule,
+    ProductsRoutingModule,
+    CustomersRoutingModule,
     FormsModule,
     MatCardModule,
     MatInputModule,

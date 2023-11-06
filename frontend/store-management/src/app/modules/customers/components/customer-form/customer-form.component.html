@@ -1,9 +1,11 @@
 <form [formGroup]="customerForm" (ngSubmit)="submitForm()">
     <mat-card-header class="box-header">
         <mat-card-title class="box-title">New Customer</mat-card-title>
-      </mat-card-header>
+    </mat-card-header>
     <div>
+
         <mat-form-field class="stacked-label">
+            <p>Date: </p>
             <input matInput formControlName="dateAdded" type="text" [readonly]="true">
         </mat-form-field>
     </div>

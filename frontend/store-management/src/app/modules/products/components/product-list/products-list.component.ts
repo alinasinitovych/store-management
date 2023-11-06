@@ -5,6 +5,7 @@ import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { PopUpDeleteComponent } from 'src/app/modules/shared/pop-up-delete/pop-up-delete.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products-list',
@@ -15,7 +16,10 @@ export class ProductsListComponent implements OnInit {
   products$: Observable<any> = this.productService.getAll();
   public displayedColumns: string[] = ['id', 'name', 'category', 'availableQuantity', 'price', 'action'];
   dataSource: MatTableDataSource<any>;
-  constructor(private productService: ProductService, public dialog: MatDialog) {
+  constructor(
+    private productService: ProductService,
+    public dialog: MatDialog,
+    private toastr: ToastrService) {
     this.dataSource = new MatTableDataSource<Product>();
   }
   ngOnInit(): void {
@@ -28,12 +32,16 @@ export class ProductsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.productService.delete(id).pipe(take(1)).subscribe(() => {
-          window.location.reload();
+          
+          this.showSuccess();
+          this.products$ = this.productService.getAll();
         });
       }
     });
-
-
+    
+  }
+  showSuccess() {
+    this.toastr.success( 'Product was successfully deleted!');
   }
 }
 

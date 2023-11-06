@@ -5,6 +5,7 @@ import { Customer } from '../../models/customer';
 import { Observable, take } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpDeleteComponent } from 'src/app/modules/shared/pop-up-delete/pop-up-delete.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -16,11 +17,14 @@ export class CustomerListComponent {
 
   customers$: Observable<any> = this.customerService.getAll();
 
-  public displayedColumns: string[] = ['Customer Name', 'Customer Address', 'Total Ordered Cost', 'Orders Count', 'Action'];
+  displayedColumns: string[] = ['Customer Name', 'Customer Address', 'Total Ordered Cost', 'Orders Count', 'Action'];
 
   dataSource: MatTableDataSource<any>;
 
-  constructor(private customerService: CustomerService, public dialog: MatDialog) {
+  constructor(
+    private customerService: CustomerService,
+    public dialog: MatDialog,
+    private toastr : ToastrService ) {
     this.dataSource = new MatTableDataSource<Customer>();
 
   }
@@ -29,18 +33,18 @@ export class CustomerListComponent {
     const dialogRef = this.dialog.open(PopUpDeleteComponent, {
       panelClass: 'custom-modalbox'
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().pipe(take(1)).subscribe((result) => {
       if (result) {
         this.customerService.delete(customer.id).pipe(take(1)).subscribe(() => {
-          window.location.reload();
+          this.showSuccess();
+          this.customers$ = this.customerService.getAll();
         });
       }
     });
-
-
   }
 
-
-
+  private showSuccess() {
+    this.toastr.success( 'Customer was successfully deleted!');
+  }
 
 }

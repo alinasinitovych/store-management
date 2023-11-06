@@ -1,4 +1,4 @@
-<mat-table [dataSource]="dataSource" class="order-table">
+<mat-table [dataSource]="dataSource" class="custom-table">
   <ng-container matColumnDef="Product Id">
     <mat-header-cell *matHeaderCellDef> Product Id </mat-header-cell>
     <mat-cell *matCellDef="let product"> {{ product.productId }} </mat-cell>
@@ -16,7 +16,7 @@
 
   <ng-container matColumnDef="Product Size">
     <mat-header-cell *matHeaderCellDef> Product Size </mat-header-cell>
-    <mat-cell *matCellDef="let product"> {{ product.productSize }} </mat-cell>
+    <mat-cell *matCellDef="let product"> {{getProductSizeText( product.productSize) }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="Product Quantity">
@@ -28,12 +28,7 @@
     <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
     <mat-cell *matCellDef="let product"> {{ product.price }} </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="Action">
-    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-    <mat-cell *matCellDef="let product">
-      <button mat-raised-button class="box-button">Delete</button>
-    </mat-cell>
-  </ng-container>
+
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>

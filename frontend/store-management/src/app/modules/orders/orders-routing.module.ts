@@ -7,11 +7,11 @@ import { AddProductToOrderComponent } from './components/add-product-to-order/ad
 
 const routes: Routes = [
   { path: '', component: OrderListComponent },
-  { path: 'orders', component: OrderListComponent },
-  { path: 'orders/createorder', component: OrderFormComponent },
-  { path: 'orders/add-order-item', component: AddProductToOrderComponent },
-
-  { path: 'orders/details/:id', component: OrderDetailsComponent },
+  { path: 'create', component: OrderFormComponent },
+  { path: 'edit/:id', component: OrderFormComponent },
+  { path: 'add-order-item', component: AddProductToOrderComponent },
+  { path: 'add-order-item/:id', component: AddProductToOrderComponent },
+  { path: 'details/:id', component: OrderDetailsComponent },
 ];
 
 @NgModule({

@@ -14,6 +14,7 @@ namespace Store.Domain.Interfaces
 		Task<IEnumerable<Order>> GetAllIncluding();
 		Task<Order> GetOrderByIdIncluding(int id);
 		Task<Order> CreateOrderWithCustomerUpdate(Order order);
+		Task<Order> GetOrderWithProductsAsync(int orderId);
 
 
     }

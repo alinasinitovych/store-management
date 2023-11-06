@@ -51,7 +51,7 @@ namespace Store.API.Controllers
             return Ok();
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> Create(CustomerDto customer)
         {
             await _customerService.Create(customer);

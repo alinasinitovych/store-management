@@ -14,8 +14,7 @@
 
   <div class="form-field">
     <mat-form-field class="stacked-label">
-      <mat-select required placeholder="Product" formControlName="productId"
-      (ngModelChange)="onProductChange($event)">
+      <mat-select required placeholder="Product" formControlName="productId" (ngModelChange)="onProductChange($event)">
         <mat-option *ngFor="let product of products$ | async" [value]="product.id">{{ product.name }}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -29,7 +28,7 @@
 
   <div class="form-field">
     <mat-form-field class="stacked-label">
-      <mat-select required placeholder="Size" formControlName="productSize" >
+      <mat-select required placeholder="Size" formControlName="productSize">
         <mat-option value="0">Small</mat-option>
         <mat-option value="1">Medium</mat-option>
         <mat-option value="2">Large</mat-option>
@@ -44,6 +43,6 @@
   </div>
   <div class="button-group">
     <button mat-raised-button class="box-button" type="submit" [disabled]="!orderItemForm.valid">Add Product</button>
-    <button mat-raised-button class="box-button" type="reset" routerLink="/orders/createorder">Cancel</button>
+    <button mat-raised-button class="box-button" type="reset" routerLink="/orders/create">Cancel</button>
   </div>
 </form>

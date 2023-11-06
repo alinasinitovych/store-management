@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-pop-up-delete',
   templateUrl: './pop-up-delete.component.html',
-  styleUrls: ['./pop-up-delete.component.css']
+  styleUrls: ['./pop-up-delete.component.css', '../shared.style.css']
 })
 export class PopUpDeleteComponent {
 

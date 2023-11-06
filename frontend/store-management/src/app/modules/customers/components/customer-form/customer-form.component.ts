@@ -11,9 +11,12 @@ import { take } from 'rxjs';
 })
 export class CustomerFormComponent {
 
-  constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private router: Router) {
-
+  constructor(
+    private formBuilder: FormBuilder,
+    private customerService: CustomerService,
+    private router: Router) {
   }
+
   customerForm: FormGroup = this.formBuilder.group({
     id: 0,
     firstName: [''],
@@ -23,13 +26,12 @@ export class CustomerFormComponent {
     totalOrderCost: 0,
     dateAdded: new Date()
   })
+
   submitForm() {
     if (this.customerForm.valid) {
       this.customerService.create(this.customerForm.getRawValue()).pipe(take(1)).subscribe(() => {
         this.router.navigate(['/customers']);
-
       });
-
     }
   }
 }

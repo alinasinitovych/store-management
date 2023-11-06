@@ -15,9 +15,12 @@ export class OrderService extends GenericService<Order> {
     super(http, '/order');
   }
   public createOrder(order: CreateOrderDto): Observable<any> {
-   
-    return this.http.post(`${this.baseUrl}${this.apiUrl}/create`, order);
+    return this.http.post(`${this.baseUrl}${this.apiUrl}`, order);
   }
+  public addOrderItem(orderItem: OrderItem): Observable<any> {
+    return this.http.post(`${this.baseUrl}${this.apiUrl}/OrderItem`, orderItem)
+  }
+ 
 
 
 }

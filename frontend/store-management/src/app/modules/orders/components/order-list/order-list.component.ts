@@ -5,6 +5,7 @@ import { OrderStatus } from '../../models/orderStatus';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { OrderStatusText } from '../../models/orderStatusText';
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
@@ -12,14 +13,16 @@ import { environment } from 'src/environments/environment.development';
 
 })
 export class OrderListComponent implements OnInit {
-  orders$: Observable<any> = this.orderService.getAll();
-  orderStatus = OrderStatus;
-  public displayedColumns: string[] = ['orderNumber', 'customerName', 'customerAddress', 'totalCost', 'status'];
-  constructor(private orderService: OrderService) {
 
+  orders$: Observable<any> = this.orderService.getAll();
+  displayedColumns: string[] = ['orderNumber', 'customerName', 'customerAddress', 'totalCost', 'status'];
+  constructor(private orderService: OrderService) {
   }
 
   ngOnInit() {
     this.orders$ = this.orderService.getAll();
+  }
+  getOrderStatusName(status: OrderStatus): string {
+    return OrderStatusText[status];
   }
 }
