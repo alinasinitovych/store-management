@@ -5,29 +5,29 @@
   </mat-card-header>
   <mat-table [dataSource]="orders$ | async" class="custom-table">
     <ng-container matColumnDef="orderNumber">
-      <mat-header-cell *matHeaderCellDef> Order Number </mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef> Order Number </mat-header-cell>
       <mat-cell *matCellDef="let order">
         <a [routerLink]="['/orders/details', order.id]">{{ order.id }}</a>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="customerName">
-      <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
+      <mat-header-cell class="custom-table-header"  *matHeaderCellDef> Customer Name </mat-header-cell>
       <mat-cell *matCellDef="let order">{{ order.customerName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="customerAddress">
-      <mat-header-cell *matHeaderCellDef> Customer Address </mat-header-cell>
+      <mat-header-cell class="custom-table-header"  *matHeaderCellDef> Customer Address </mat-header-cell>
       <mat-cell *matCellDef="let order">{{ order.customerAddress }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="totalCost">
-      <mat-header-cell *matHeaderCellDef> Total Cost </mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef> Total Cost </mat-header-cell>
       <mat-cell *matCellDef="let order">{{ order.totalCost }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef> Status </mat-header-cell>
       <mat-cell *matCellDef="let order">{{getOrderStatusName(order.status) }}</mat-cell>
     </ng-container>
 

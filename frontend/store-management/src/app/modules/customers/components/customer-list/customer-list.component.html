@@ -4,30 +4,30 @@
     <button class="box-button" mat-raised-button routerLink="/customers/create">New Customer</button>
   </mat-card-header>
 
-  <mat-table [dataSource]="customers$ | async" class="custom-table">
+  <mat-table [dataSource]="customers" class="custom-table">
 
     <ng-container matColumnDef="Customer Name">
-      <mat-header-cell *matHeaderCellDef>Customer Name</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>Customer Name</mat-header-cell>
       <mat-cell *matCellDef="let customer">{{ customer.firstName + ' ' + customer.lastName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Customer Address">
-      <mat-header-cell *matHeaderCellDef>Customer Address</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>Customer Address</mat-header-cell>
       <mat-cell *matCellDef="let customer">{{ customer.address }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Total Ordered Cost">
-      <mat-header-cell *matHeaderCellDef>Total Ordered Cost</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>Total Ordered Cost</mat-header-cell>
       <mat-cell *matCellDef="let customer">{{ customer.totalOrderCost }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Orders Count">
-      <mat-header-cell *matHeaderCellDef>Orders Count</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>Orders Count</mat-header-cell>
       <mat-cell *matCellDef="let customer">{{ customer.orderCount }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Action">
-      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>Action</mat-header-cell>
       <mat-cell *matCellDef="let customer">
         <a class='deleteLink' (click)="deleteCustomer(customer)">Delete</a>
       </mat-cell>

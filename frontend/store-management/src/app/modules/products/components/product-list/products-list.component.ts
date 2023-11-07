@@ -6,6 +6,7 @@ import { ProductService } from '../../services/product.service';
 import { PopUpDeleteComponent } from 'src/app/modules/shared/pop-up-delete/pop-up-delete.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-products-list',
@@ -14,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProductsListComponent implements OnInit {
   products$: Observable<any> = this.productService.getAll();
+  products: Product[] = []
   public displayedColumns: string[] = ['id', 'name', 'category', 'availableQuantity', 'price', 'action'];
   dataSource: MatTableDataSource<any>;
   constructor(
@@ -23,7 +25,7 @@ export class ProductsListComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Product>();
   }
   ngOnInit(): void {
-
+    this.getProducts()
   }
   deleteProducts(id: number) {
     const dialogRef = this.dialog.open(PopUpDeleteComponent, {
@@ -32,16 +34,21 @@ export class ProductsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.productService.delete(id).pipe(take(1)).subscribe(() => {
-          
+
           this.showSuccess();
-          this.products$ = this.productService.getAll();
+          this.getProducts();
         });
       }
     });
-    
+
   }
-  showSuccess() {
-    this.toastr.success( 'Product was successfully deleted!');
+  private showSuccess() {
+    this.toastr.success('Product was successfully deleted!');
+  }
+  private getProducts() {
+    this.productService.getAll().pipe(take(1)).subscribe((products) => {
+      this.products = products;
+    })
   }
 }
 
