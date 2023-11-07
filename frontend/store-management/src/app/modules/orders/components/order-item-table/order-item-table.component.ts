@@ -5,7 +5,7 @@ import { ProductSizeText } from 'src/app/modules/products/models/productSizeText
 @Component({
   selector: 'app-order-item-table',
   templateUrl: './order-item-table.component.html',
-  styleUrls: ['./order-item-table.component.css', '../../../shared/shared.style.css']
+  styleUrls: ['./order-item-table.component.css']
 })
 export class OrderItemTableComponent implements OnInit {
 

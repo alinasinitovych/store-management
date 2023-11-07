@@ -11,7 +11,7 @@ import { OrderStatusText } from '../../models/orderStatusText';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
-  styleUrls: ['./order-details.component.css', '../../../shared/shared.style.css']
+  styleUrls: ['./order-details.component.css']
 })
 export class OrderDetailsComponent implements OnInit {
   

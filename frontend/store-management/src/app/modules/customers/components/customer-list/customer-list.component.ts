@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Customer } from '../../models/customer';
@@ -13,10 +13,9 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css', '../../../shared/shared.style.css']
 })
-export class CustomerListComponent {
+export class CustomerListComponent implements OnInit {
 
-  customers$: Observable<any> = this.customerService.getAll();
-
+  customers: Customer[] = []
   displayedColumns: string[] = ['Customer Name', 'Customer Address', 'Total Ordered Cost', 'Orders Count', 'Action'];
 
   dataSource: MatTableDataSource<any>;
@@ -24,9 +23,12 @@ export class CustomerListComponent {
   constructor(
     private customerService: CustomerService,
     public dialog: MatDialog,
-    private toastr : ToastrService ) {
+    private toastr: ToastrService) {
     this.dataSource = new MatTableDataSource<Customer>();
 
+  }
+  ngOnInit() {
+    this.getCustomers();
   }
   public deleteCustomer(customer: Customer) {
 
@@ -37,14 +39,20 @@ export class CustomerListComponent {
       if (result) {
         this.customerService.delete(customer.id).pipe(take(1)).subscribe(() => {
           this.showSuccess();
-          this.customers$ = this.customerService.getAll();
+          this.getCustomers();
         });
       }
     });
   }
+  private getCustomers() {
+    this.customerService.getAll().pipe(take(1)).subscribe((customers) => {
+      this.customers = customers;
+    })
+  }
 
   private showSuccess() {
-    this.toastr.success( 'Customer was successfully deleted!');
+    this.toastr.success('Customer was successfully deleted!');
   }
+ 
 
 }

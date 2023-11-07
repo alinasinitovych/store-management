@@ -1,7 +1,7 @@
 .custom-table {
   border-collapse: collapse;
   width: 100%;
-  
+
   border-radius: 10px;
   margin-bottom: 30px;
 }
@@ -26,9 +26,9 @@ mat-row:nth-child(odd) {
   text-decoration: none;
 }
 
-.mat-mdc-table .mat-mdc-header-cell {
+.custom-table-header {
   border: 2px solid #3e638b;
-  background-color: #325b87;
+  background-color: #325b87 !important;
   border-radius: 10px;
   color: white;
 }
@@ -50,13 +50,13 @@ mat-cell.mat-mdc-cell {
 }
 
 .custom-table th {
-
   color: white;
 }
-.mdc-text-field--filled  {
+
+.mdc-text-field--filled {
   border-radius: 15px !important;
   border: 2px solid rgb(61, 61, 61);
-  width: 400px !important
+  width: 100% !important
 }
 
 .box-header {
@@ -94,4 +94,60 @@ mat-cell.mat-mdc-cell {
   min-width: 50px;
   max-width: 200px;
   margin-left: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .custom-table {
+    width: 100%;
+    border-radius: 0;
+    margin-bottom: 15px;
+  }
+
+  .box-title {
+    font-size: 10px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .box-button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .mdc-text-field--filled {
+    width: 100%;
+  }
+
+  .container {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .content {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+
+  .box-container {
+    flex-direction: column;
+  }
+
+  .header-button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .box-title {
+    font-size: 20px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
 }

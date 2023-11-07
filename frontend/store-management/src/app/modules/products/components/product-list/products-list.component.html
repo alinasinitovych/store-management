@@ -4,36 +4,36 @@
     <button mat-raised-button class="box-button"  routerLink="/products/create">New Product</button>
   </mat-card-header>
 
-  <mat-table [dataSource]="products$ | async" class="mat-table">
+  <mat-table [dataSource]="products" class="mat-table">
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>ID</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <a [routerLink]="['/products/details', product.id]">{{ product.id }}</a>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>Name</mat-header-cell>
       <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="category">
-      <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+      <mat-header-cell class="custom-table-header"  *matHeaderCellDef>Category</mat-header-cell>
       <mat-cell *matCellDef="let product">{{ product.categoryName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="availableQuantity">
-      <mat-header-cell *matHeaderCellDef>Available Quantity</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>Available Quantity</mat-header-cell>
       <mat-cell *matCellDef="let product">{{ product.availableQuantity }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>Price</mat-header-cell>
       <mat-cell *matCellDef="let product">{{ product.price }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-header-cell class="custom-table-header" *matHeaderCellDef>Action</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <a class = 'deleteLink' (click)="deleteProducts(product.id)">Delete</a>
       </mat-cell>
