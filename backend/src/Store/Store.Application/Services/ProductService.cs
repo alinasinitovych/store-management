@@ -41,7 +41,18 @@ namespace Store.Application.Services
         public async Task<IEnumerable<ProductDto>> GetAll()
         {
             var allProducts = await _productRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<ProductDto>>(allProducts);
+            var allProductsDto = _mapper.Map<IEnumerable<ProductDto>>(allProducts);
+            foreach (var product in allProductsDto)
+            {
+                product.CategoryName = await _productRepository.GetCategoryNameAsync(product.CategoryId);
+            }
+            return allProductsDto;
+        }
+
+        public async Task<IEnumerable<Category>> GetAllCategories()
+        {
+            var allCategories = await _productRepository.GetAllCategories();
+            return _mapper.Map<IEnumerable<Category>>(allCategories);
         }
 
         public async Task<ProductDto> GetById(int productId)

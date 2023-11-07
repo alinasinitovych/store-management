@@ -26,7 +26,10 @@
             ],
             "styles": [
              
-              "src/styles.css"
+              "src/styles.css",
+              "src/app/modules/shared/shared.style.css"
+             
+              
             ],
             "scripts": []
           },
@@ -52,7 +55,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -98,6 +107,9 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "cache": {
+      "enabled": false
+    }
   }
 }

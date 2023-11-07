@@ -10,6 +10,6 @@ import { Customer } from '../models/customer';
 export class CustomerService extends GenericService<Customer> {
 
   constructor(http: HttpClient) {
-    super(http, '/customer');
+    super(http, '/Customer');
   }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Store.Domain.Dtos;
 using Store.Domain.Entities;
 using Store.Domain.Interfaces;
 using System;
@@ -14,10 +15,10 @@ namespace Store.Infrustracture
         public OrderItemRepository(StoreDbContext appContext) : base(appContext)
         {
         }
-        public async Task<OrderItem> Add(int orderId, OrderItem orderItem)
+        public async Task<OrderItem> Add(OrderItem orderItem)
         {
-            var order = await _context.Orders.FindAsync(orderId);
-            orderItem.OrderId = orderId;
+            var order = await _context.Orders.FindAsync(orderItem.OrderId);
+            
             _context.OrderItems.Add(orderItem);
             await _context.SaveChangesAsync();
 

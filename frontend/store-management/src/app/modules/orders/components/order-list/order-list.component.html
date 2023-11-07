@@ -1,38 +1,37 @@
 <mat-card>
   <mat-card-header class="box-header">
     <mat-card-title class="box-title">Orders</mat-card-title>
-
-    <button mat-raised-button color="primary" routerLink="/createorder">Create New Order</button>
-
+    <button mat-raised-button class="box-button" routerLink="/orders/create">New Order</button>
   </mat-card-header>
-
-  <mat-table [dataSource]="orders$ | async" class="mat-elevation-z8">
+  <mat-table [dataSource]="orders$ | async" class="custom-table">
     <ng-container matColumnDef="orderNumber">
       <mat-header-cell *matHeaderCellDef> Order Number </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{ order.id }} </mat-cell>
+      <mat-cell *matCellDef="let order">
+        <a [routerLink]="['/orders/details', order.id]">{{ order.id }}</a>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="customerName">
       <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{ order.customerName }} </mat-cell>
+      <mat-cell *matCellDef="let order">{{ order.customerName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="customerAddress">
       <mat-header-cell *matHeaderCellDef> Customer Address </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{ order.customerAddress }} </mat-cell>
+      <mat-cell *matCellDef="let order">{{ order.customerAddress }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="totalCost">
       <mat-header-cell *matHeaderCellDef> Total Cost </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{ order.totalCost }} </mat-cell>
+      <mat-cell *matCellDef="let order">{{ order.totalCost }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{ orderStatus[order.status] }} </mat-cell>
+      <mat-cell *matCellDef="let order">{{getOrderStatusName(order.status) }}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 </mat-card>

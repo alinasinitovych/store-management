@@ -1,0 +1,33 @@
+<mat-card-header class="box-header">
+    <mat-card-title class="box-title">View order</mat-card-title>
+    <button class="box-button" mat-raised-button [routerLink]="['/orders/edit', order?.id]">Edit Order</button>
+</mat-card-header>
+
+<div class="order-details">
+    <div class="order-row">
+        <span class="order-label">Order number:</span>
+        <span class="order-value">{{ order?.id }}</span>
+        <span class="order-label">Order date:</span>
+        <span class="order-value">{{ order?.orderDate | date:'shortDate' }}</span>
+    </div>
+    <div class="order-row">
+        <span class="order-label">Customer:</span>
+        <span class="order-value">{{ order?.customerName }}</span>
+    </div>
+    <div class="order-row">
+        <span class="order-label">Status:</span>
+        <span class="order-value">{{ getOrderStatusName(order?.status) }}</span>
+    </div>
+    <div class="order-row">
+        <span class="order-label">Total cost:</span>
+        <span class="order-value">{{ order?.totalCost | currency}}</span>
+    </div>
+</div>
+
+<app-order-item-table [dataSource]="dataSource"></app-order-item-table>
+
+
+<div class="comment-section">
+    <p class="comment-label">Comment</p>
+    <textarea class="comment" disabled matInput>{{order?.comment}}</textarea>
+</div>

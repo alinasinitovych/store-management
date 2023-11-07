@@ -1,34 +1,16 @@
-/* 
-.order-table {
-  border-collapse: collapse;
-  width: 100%;
-  border: 2px solid #007bff;
-}
 
-.order-table th,
-.order-table td {
-  border: 1px solid #0056b3;
-  padding: 8px;
-  text-align: left;
-  border-radius: 5px;
-}
+ html,
+ body {
+   height: 100%;
+ }
+ 
+ body {
+   margin: 0;
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+ }
 
-.order-table th {
-  background-color: #0056b3;
-  color: white;
-}
 
-.order-table tr:hover {
-  background-color: #cce5ff;
-  cursor: pointer;
-}
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import 'ngx-toastr/toastr';
 
-html,
-body {
-  height: 100%;
-}
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-} */

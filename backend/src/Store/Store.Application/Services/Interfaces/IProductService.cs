@@ -15,5 +15,6 @@ namespace Store.Application.Services.Interfaces
         Task Delete(int pdoductId);
         Task<IEnumerable<ProductDto>> GetAll();
         Task<ProductDto> GetById(int productId);
+        Task<IEnumerable<Category>> GetAllCategories();
     }
 }
