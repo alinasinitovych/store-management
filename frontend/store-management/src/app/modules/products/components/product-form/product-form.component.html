@@ -10,7 +10,7 @@
     <div class="form-field">
         <mat-form-field class="stacked-label">
             <mat-select  [panelClass]="'custom-arrow'" placeholder="Category" formControlName="categoryId" required>
-                <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{ category.name
+                <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name
                     }}</mat-option>
             </mat-select>
         </mat-form-field>

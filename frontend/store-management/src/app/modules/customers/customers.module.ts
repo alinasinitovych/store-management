@@ -11,7 +11,6 @@ import { MatTableModule } from '@angular/material/table';
 import { ProductsRoutingModule } from '../products/products-routing.module';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { SharedModule } from '../shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 
 

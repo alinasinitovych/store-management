@@ -10,10 +10,9 @@
 
 <p>Product Name: {{product?.name}}</p>
 
-<p>Product Category:</p>
+<p>Product Category: {{getCategoryName(product?.categoryId)}}</p>
 
 <p>Cost: {{product?.price | currency}}</p>
 <p>
     Description: {{product?.description}}
 </p>
-

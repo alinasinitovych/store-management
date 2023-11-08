@@ -3,6 +3,7 @@ import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { take } from 'rxjs';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-product-form',
@@ -14,7 +15,7 @@ export class ProductFormComponent implements OnInit{
   private editing = false;
   
   headerText: string = 'Create Product';
-  categories$ = this.productService.getCategories();
+  categories : Category[] =[]
   productForm: FormGroup = this.formBuilder.group({
     id: 0,
     name: [''],
@@ -32,6 +33,10 @@ export class ProductFormComponent implements OnInit{
     private route: ActivatedRoute) {
   }
   ngOnInit(): void {
+    this.productService.categories$.subscribe((categories: Category[]) => {
+      this.categories = categories;
+    });
+
     
     const productId = this.route.snapshot.params['id'];
     if(productId){

@@ -11,7 +11,7 @@ import { ThisReceiver } from '@angular/compiler';
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css', '../../../shared/shared.style.css']
+  styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
   products$: Observable<any> = this.productService.getAll();

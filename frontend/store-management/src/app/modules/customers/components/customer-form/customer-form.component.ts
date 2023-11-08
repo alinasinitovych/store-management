@@ -7,7 +7,7 @@ import { take } from 'rxjs';
 @Component({
   selector: 'app-customer-form',
   templateUrl: './customer-form.component.html',
-  styleUrls: ['./customer-form.component.css', '../../../shared/shared.style.css']
+  styleUrls: ['./customer-form.component.css']
 })
 export class CustomerFormComponent {
 

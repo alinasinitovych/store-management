@@ -8,16 +8,27 @@ import { OrderDetailsComponent } from './modules/orders/components/order-details
 import { CustomerListComponent } from './modules/customers/components/customer-list/customer-list.component';
 import { CustomerFormComponent } from './modules/customers/components/customer-form/customer-form.component';
 import { ProductFormComponent } from './modules/products/components/product-form/product-form.component';
+import { CategoryResolver } from './modules/products/services/categories.resolver';
+import { ProductDetailsComponent } from './modules/products/components/product-details/product-details.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./modules/orders/orders.module').then((m) => m.OrdersModule) },
+  {
+    path: '',
+    redirectTo: 'orders',
+    pathMatch: 'full'
+  },
   { path: 'orders', loadChildren: () => import('./modules/orders/orders.module').then((m) => m.OrdersModule) },
   { path: 'customers', loadChildren: () => import('./modules/customers/customers.module').then((m) => m.CustomersModule) },
   { path: 'products', loadChildren: () => import('./modules/products/products.module').then((m) => m.ProductsModule) },
   {
     path: '',
-    redirectTo: 'orders',
-    pathMatch: 'full'
+    component: ProductDetailsComponent,
+    resolve: { categories: CategoryResolver }
+  },
+  {
+    path: '',
+    component: ProductFormComponent,
+    resolve: { categories: CategoryResolver }
   }
 
 ];

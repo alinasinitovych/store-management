@@ -6,6 +6,7 @@ import { Product } from 'src/app/modules/products/models/product';
 import { ProductService } from 'src/app/modules/products/services/product.service';
 import { SharedOrderService } from '../../services/shared-order.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Category } from 'src/app/modules/products/models/category';
 
 
 
@@ -21,7 +22,7 @@ export class AddProductToOrderComponent implements OnInit {
 
   public availableQuantity: number = 0;
   public products$ = this.productService.getAll();
-  public categories$ = this.productService.getCategories();
+  categories:Category[] =[];
   private selectedProduct: Product | undefined;
 
   public orderItemForm: FormGroup = this.formBuilder.group({
@@ -43,9 +44,13 @@ export class AddProductToOrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.productService.categories$.subscribe((categories: Category[]) => {
+      this.categories = categories;
+    });
     this.productService.getAll().subscribe((products) => {
       this.allProducts = products;
     });
+
   }
 
   public onCategoryChange(categoryId: number | null) {

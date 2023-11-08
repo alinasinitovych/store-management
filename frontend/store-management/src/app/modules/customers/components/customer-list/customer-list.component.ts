@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.css', '../../../shared/shared.style.css']
+  styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
 
@@ -28,7 +28,7 @@ export class CustomerListComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.getCustomers();
+    this.loadCustomers();
   }
   public deleteCustomer(customer: Customer) {
 
@@ -39,12 +39,12 @@ export class CustomerListComponent implements OnInit {
       if (result) {
         this.customerService.delete(customer.id).pipe(take(1)).subscribe(() => {
           this.showSuccess();
-          this.getCustomers();
+          this.loadCustomers();
         });
       }
     });
   }
-  private getCustomers() {
+  private loadCustomers() {
     this.customerService.getAll().pipe(take(1)).subscribe((customers) => {
       this.customers = customers;
     })
