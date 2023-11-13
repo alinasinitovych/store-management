@@ -1,0 +1,18 @@
+.box-button {
+    width: 30%;
+    height: 40px;
+}
+
+.custom-dialog-content {
+    padding: 16px;
+    text-align: center;
+    background-color: #fff;
+}
+
+
+.custom-dialog-actions {
+    text-align: center;
+    padding: 16px;
+    display: flex;
+    justify-content: space-around;
+}

@@ -15,8 +15,7 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSelectModule,
     MatButtonModule,
     MatTableModule,
-    
+    SharedModule
     
   ]
 })

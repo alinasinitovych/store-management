@@ -4,18 +4,19 @@
   </mat-card-header>
   <!-- customer -->
   <div>
-    <mat-form-field>
-
-      <mat-select placeholder="Customer" formControlName="customerId">
-        <mat-option *ngFor="let customer of customers$ | async" [value]="customer.id">{{customer.firstName + ' ' +
+    <mat-form-field  class="formInput">
+      <mat-label>Customer</mat-label>
+      <mat-select required placeholder="Select customer name" formControlName="customerId">
+        <mat-option *ngFor="let customer of customers$ | async" [value]="customer.id" required>{{customer.firstName + ' ' +
           customer.lastName }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <!-- status -->
   <div>
-    <mat-form-field>
-      <mat-select placeholder="Status" formControlName="status">
+    <mat-form-field  class="formInput">
+      <mat-label>Status</mat-label>
+      <mat-select required placeholder="Select order status" formControlName="status" >
         <mat-option [value]="0">New</mat-option>
         <mat-option [value]="1">Paid</mat-option>
         <mat-option [value]="2">Shipped</mat-option>
@@ -47,7 +48,7 @@
   </div>
   <!-- create order button -->
   <div class="button-group">
-    <button mat-raised-button class="box-button" [disabled]="!orderForm.valid" type="submit">{{headerText}}</button>
+    <button mat-raised-button class="box-button"  type="submit" [disabled]="!orderForm.valid">{{headerText}}</button>
     <button mat-raised-button class="box-button" type="reset" (click)="onCancelClick()">Cancel</button>
   </div>
 </form>

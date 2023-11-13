@@ -26,12 +26,8 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.categories$.subscribe((categories: Category[]) => {
       this.categories = categories;
     });
-
-
   }
-  getCategoryName(categoryId: number | undefined): string {
-    const foundCategory = this.categories.find(category => category.id === categoryId);
-    return foundCategory ? foundCategory.name : 'Category Not Found';
-  }
+
+ 
 
 }

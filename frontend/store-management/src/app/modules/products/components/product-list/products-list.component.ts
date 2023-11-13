@@ -3,10 +3,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable, take } from 'rxjs';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
-import { PopUpDeleteComponent } from 'src/app/modules/shared/pop-up-delete/pop-up-delete.component';
+import { PopUpDeleteComponent } from 'src/app/modules/shared/components/pop-up-delete/pop-up-delete.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ThisReceiver } from '@angular/compiler';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-products-list',
@@ -18,6 +19,7 @@ export class ProductsListComponent implements OnInit {
   products: Product[] = []
   public displayedColumns: string[] = ['id', 'name', 'category', 'availableQuantity', 'price', 'action'];
   dataSource: MatTableDataSource<any>;
+  categories: Category[] =[];
   constructor(
     private productService: ProductService,
     public dialog: MatDialog,
@@ -26,6 +28,9 @@ export class ProductsListComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getProducts()
+    this.productService.categories$.subscribe((categories: Category[]) => {
+      this.categories = categories;
+    });
   }
   deleteProducts(id: number) {
     const dialogRef = this.dialog.open(PopUpDeleteComponent, {

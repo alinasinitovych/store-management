@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { GenericService } from 'src/app/services/generic.service';
 
 import { Product } from '../models/product';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Category } from '../models/category';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 
@@ -19,16 +19,13 @@ export class ProductService extends GenericService<Product>  {
   }
   
   fetchCategories() {
-    console.log("fetchcategories")
-    this.http.get<Category[]>(`${this.baseUrl}${this.apiUrl}/categories`).subscribe(
+    return this.http.get<Category[]>(`${this.baseUrl}${this.apiUrl}/categories`).pipe(tap(
       (categories: Category[]) => {
         this.categoriesSubject.next(categories);
-      },
-      (error) => {
-        console.error('Error fetching categories', error);
       }
-    );
+    ));
+    }
   }
 
   
-}
+

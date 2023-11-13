@@ -3,12 +3,12 @@
         <mat-card-title  class="box-title">{{headerText}}</mat-card-title>
     </mat-card-header>
     <div>
-        <mat-form-field class="customInput">
+        <mat-form-field class="formInput">
             <input matInput  type="text" placeholder="Product name" formControlName="name" required>
         </mat-form-field>
     </div>
     <div class="form-field">
-        <mat-form-field class="stacked-label">
+        <mat-form-field class="formInput">
             <mat-select  [panelClass]="'custom-arrow'" placeholder="Category" formControlName="categoryId" required>
                 <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name
                     }}</mat-option>
@@ -16,20 +16,20 @@
         </mat-form-field>
     </div>
     <div class="form-field">
-        <mat-form-field class="stacked-label">
+        <mat-form-field class="formInput" >
             <p>Available Quantity</p>
             <input matInput type="number" placeholder="Available Quantity" min="1" formControlName="availableQuantity">
         </mat-form-field>
     </div>
     <div class="form-field">
-        <mat-form-field class="stacked-label">
+        <mat-form-field class="formInput" >
             <p>Price</p>
             <input matInput type="number" placeholder="Price" min="1" formControlName="price">
         </mat-form-field>
     </div>
     <div>
 
-        <mat-form-field>
+        <mat-form-field class="description">
             <textarea matInput formControlName="description" placeholder="Enter description..."></textarea>
         </mat-form-field>
     </div>

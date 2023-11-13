@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Customer } from '../../models/customer';
 import { Observable, take } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { PopUpDeleteComponent } from 'src/app/modules/shared/pop-up-delete/pop-up-delete.component';
+import { PopUpDeleteComponent } from 'src/app/modules/shared/components/pop-up-delete/pop-up-delete.component';
 import { ToastrService } from 'ngx-toastr';
 
 

@@ -3,16 +3,29 @@
     <button class="box-button" mat-raised-button [routerLink]="['/products/edit', product?.id]">Edit Product</button>
 </mat-card-header>
 
-<div class="orderInfo" *ngIf="product">
-    <p>Product Id: <span>{{product.id}}</span></p>
-    <p>Created Date: <span>{{product.createdDate | date:'shortDate'}}</span></p>
+
+
+<div class="order-details">
+    <div class="order-row">
+        <span class="order-label">Product number:</span>
+        <span class="order-value">{{ product?.id }}</span>
+        <span class="order-label">Created Date</span>
+        <span class="order-value">{{ product?.createdDate | date:'shortDate' }}</span>
+    </div>
+    <div class="order-row">
+        <span class="order-label">Product Name:</span>
+        <span class="order-value">{{ product?.name }}</span>
+    </div>
+    <div class="order-row">
+        <span class="order-label">Product Category:</span>
+        <span class="order-value">{{ product?.categoryId | categoryName: categories | async }}</span>
+    </div>
+    <div class="order-row">
+        <span class="order-label">Cost:</span>
+        <span class="order-value">{{ product?.price  | currency}}</span>
+    </div>
 </div>
-
-<p>Product Name: {{product?.name}}</p>
-
-<p>Product Category: {{getCategoryName(product?.categoryId)}}</p>
-
-<p>Cost: {{product?.price | currency}}</p>
-<p>
-    Description: {{product?.description}}
-</p>
+<div class="description-section">
+    <p class="description-label">Description</p>
+    <textarea class="description" disabled matInput>{{product?.description}}</textarea>
+</div>

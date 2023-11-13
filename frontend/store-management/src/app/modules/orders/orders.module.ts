@@ -15,6 +15,8 @@ import { OrdersRoutingModule } from './orders-routing.module';
 
 import { ProductsRoutingModule } from '../products/products-routing.module';
 import { CustomersRoutingModule } from '../customers/customers-routing.module';
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { CustomersRoutingModule } from '../customers/customers-routing.module';
     AddProductToOrderComponent,
     OrderDetailsComponent,
     OrderItemTableComponent
+    
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import { CustomersRoutingModule } from '../customers/customers-routing.module';
     ReactiveFormsModule,
     MatSelectModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    SharedModule
   ]
 })
 export class OrdersModule { }

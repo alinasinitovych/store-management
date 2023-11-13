@@ -2,26 +2,29 @@
     <mat-card-header class="box-header">
         <mat-card-title class="box-title">New Customer</mat-card-title>
     </mat-card-header>
-    <div>
+    <div class="form-field">
 
-        <mat-form-field class="stacked-label">
-            <p>Date: </p>
-            <input matInput formControlName="dateAdded" type="text" [readonly]="true">
+        <mat-form-field class="formInput">
+            <mat-label>Date</mat-label>
+            <input matInput formControlName="dateAdded" type="text" [readonly]="true" >
         </mat-form-field>
     </div>
-    <div>
-        <mat-form-field>
-            <input matInput type="text" placeholder="Customer first name" formControlName="firstName" required>
+    <div class="form-field">
+        <mat-form-field class="formInput">
+            <mat-label>First name</mat-label>
+            <input  matInput type="text"  formControlName="firstName" required>
         </mat-form-field>
     </div>
-    <div>
-        <mat-form-field>
-            <input matInput type="text" placeholder="Customer last name" formControlName="lastName" required>
+    <div class="form-field">
+        <mat-form-field class="formInput">
+            <mat-label>Last name</mat-label>
+            <input matInput type="text"  formControlName="lastName" required>
         </mat-form-field>
     </div>
-    <div>
-        <mat-form-field>
-            <textarea matInput placeholder="Customer address" formControlName="address" required></textarea>
+    <div class="form-field">
+        <mat-form-field class="formInput">
+            <mat-label>Address</mat-label>
+            <textarea matInput  formControlName="address" required></textarea>
         </mat-form-field>
     </div>
     <div>

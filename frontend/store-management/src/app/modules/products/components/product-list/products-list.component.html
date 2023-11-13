@@ -19,7 +19,7 @@
 
     <ng-container matColumnDef="category">
       <mat-header-cell class="custom-table-header"  *matHeaderCellDef>Category</mat-header-cell>
-      <mat-cell *matCellDef="let product">{{ product.categoryName }}</mat-cell>
+      <mat-cell *matCellDef="let product">{{  product?.categoryId | categoryName: categories | async}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="availableQuantity">
